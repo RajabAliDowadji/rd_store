@@ -1,0 +1,37 @@
+.customHeader_mainContainer {
+  height: 100%;
+}
+
+.customHeader_innerContainer {
+  height: -moz-calc(100% - 125px);
+  height: -webkit-calc(100% - 125px);
+  height: calc(100% - 125px);
+}
+
+.productTypeHeader_mainContainer {
+  background: var(--background);
+}
+.productTypeHeader_activeContainer {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--white);
+  background: var(--primary500);
+}
+.productTypeHeader_innerContainer {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--black);
+  background: var(--background);
+}
+
+.productTypeHeader_innerContainer:hover {
+  color: var(--white);
+  background: var(--primary500);
+}
+
+.productTypeHeader_titleTxt {
+  font-size: 14px !important;
+  font-family: var(--fontFamily) !important;
+}
