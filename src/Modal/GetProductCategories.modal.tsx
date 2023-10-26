@@ -14,12 +14,20 @@ export interface SuccessResponseState {
 export interface ProductCategory {
   _id: string;
   category_name: string;
-  search_name: string;
-  product_type: ProductType;
+  category_image: BucketFile;
   createdAt?: string;
   updatedAt?: string;
 }
 
+export interface BucketFile {
+  _id: string;
+  file_name: string;
+  file_size: number;
+  file_key: string;
+  file_url: string;
+  createdAt: string;
+  updatedAt: string;
+}
 export interface ProductType {
   _id: string;
   type_name: string;
@@ -30,7 +38,5 @@ export interface ProductType {
 export interface GetProductCategoriesColumns {
   _id: string;
   category_name: string;
-  type_name?: string;
-  search_name: string;
-  product_type?: string;
+  category_image: BucketFile;
 }

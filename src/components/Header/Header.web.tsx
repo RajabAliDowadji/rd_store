@@ -1,68 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
-  makeStyles,
 } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
-import { White_logo } from "./assets";
-import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
-import LocalMallOutlinedIcon from "@material-ui/icons/LocalMallOutlined";
+import SearchIcon from "@material-ui/icons/Search";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { color_logo } from "./assets";
 import "./Header.web.css";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const auth = localStorage.getItem("user_data");
-  const [userData, setUserData] = useState<any>(null);
   const [searchText, setSearchText] = useState<string>("");
-
-  const useStyles = makeStyles({
-    root: {
-      "& .MuiOutlinedInput-root": {
-        "&.Mui-focused fieldset": {
-          border: 0,
-        },
-      },
-    },
-  });
-
-  useEffect(() => {
-    if (auth) {
-      setUserData(JSON.parse(auth));
-    } else {
-      setUserData(null);
-    }
-  }, [auth, navigate]);
-
-  const logoHandleClick = () => {
-    if (userData != null) {
-      navigate("/dashboard");
-    } else {
-      navigate("/");
-    }
-  };
-
   const searchTextHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
-  const classes = useStyles();
   return (
     <Box className="header_mainContainer">
-      <Grid container className="header_mainGrid">
-        <Grid item xs={4} lg={2} md={2}>
+      <Grid container className="header_gridContainer">
+        <Grid item xs={6} sm={3} md={3} lg={2}>
           <img
-            src={White_logo}
-            alt="white_logo_image"
-            className="header_logo"
-            onClick={logoHandleClick}
+            src={color_logo}
+            alt="rd_store_transparent_logo"
+            className="header_logoImage"
           />
         </Grid>
-        <Grid item xs={12} lg={6} md={6}></Grid>
-        <Grid item xs={12} lg={2} md={2}>
+        <Grid
+          item
+          xs={3}
+          sm={4}
+          md={5}
+          lg={7}
+          className="header_searchGridContainer"
+        >
           <Box className="header_searchContainer">
             <TextField
               variant="outlined"
@@ -70,37 +41,42 @@ const Header = () => {
               name="search"
               type="text"
               placeholder="Search..."
-              className={`search_textField ${classes.root}`}
+              className={`header_textField`}
               value={searchText}
               onChange={searchTextHandle}
               inputProps={{
-                className: "headerTextField_InputProps",
+                className: "header_inputProps",
               }}
               InputProps={{
-                className: "headerTextField_Input",
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon className="header_searchIcon" />
+                  </InputAdornment>
+                ),
+                className: "header_input",
               }}
             />
           </Box>
         </Grid>
-        <Grid item xs={12} lg={2} md={2}>
-          <Box className="header_iconContainer">
-            <Box className="header_subContainer">
-              <AccountCircleOutlinedIcon className="header_icon" />
-              <Typography className="header_iconText">Profile</Typography>
-            </Box>
-            <Box className="header_subContainer">
-              <FavoriteIcon className="header_icon" />
-              <Typography className="header_iconText">Wishlist</Typography>
-            </Box>
-            <Box className="header_subContainer">
-              <LocalMallOutlinedIcon className="header_icon" />
-              <Typography className="header_iconText">My Bag</Typography>
-            </Box>
-            <Box className="header_subContainer">
-              <QuestionAnswerIcon className="header_icon" />
-              <Typography className="header_iconText">Let's chat</Typography>
-            </Box>
-          </Box>
+        <Grid item xs={6} sm={5} md={4} lg={3}>
+          <Grid container className="header_btnContainer">
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              md={6}
+              lg={6}
+              className="header_loginGridContainer"
+            >
+              <Typography className="header_personText">Login</Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
+              <Box className="header_btnInnerContainer">
+                <ShoppingCartIcon className="header_cartIcon" />
+                <Typography className="header_cartText">Cart</Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Box>

@@ -1,8 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Login from "./Screens/Login/Login.web";
-import Products from "./Screens/Products/Products.web";
+import HomePage from "./Screens/HomePage/HomePage.web";
 import "./index.css";
 
 function App() {
@@ -10,8 +9,7 @@ function App() {
     <React.Fragment>
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </React.Fragment>
   );

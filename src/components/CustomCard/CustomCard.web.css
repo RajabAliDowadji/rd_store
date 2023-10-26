@@ -1,0 +1,54 @@
+.customCard_mainContainer {
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+
+.customCard_image {
+  width: 100%;
+  object-fit: contain;
+  mix-blend-mode: darken;
+  height: 15vh;
+}
+
+.customCard_titleText {
+  font-family: var(--fontFamily) !important;
+  margin: 10px 0px !important;
+  font-size: 18px !important;
+  color: var(--black) !important;
+  word-wrap: break-word !important;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.customCard_sizeText {
+  color: var(--gray900) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 10px !important;
+  margin: 10px 0px !important;
+}
+
+.customCard_actionContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customCard_MRPpriceText {
+  font-family: var(--fontFamily) !important;
+  font-size: 12px !important;
+  color: var(--black) !important;
+  margin-right: 5px !important;
+  text-decoration: line-through !important;
+}
+
+.customCard_priceText {
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  color: var(--primary500) !important;
+}

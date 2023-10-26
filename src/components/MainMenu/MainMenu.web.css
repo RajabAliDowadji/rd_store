@@ -1,0 +1,32 @@
+.mainMenu_mainContainer {
+  background-color: var(--background);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.mainMenu_gridContainer {
+  align-items: center;
+}
+
+.mainMenu_innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mainMenu_categoryImage {
+  width: 100px;
+  object-fit: contain;
+  height: 5vh;
+  mix-blend-mode: darken;
+}
+
+.mainMenu_categoryText {
+  font-family: var(--fontFamily) !important;
+  color: var(--black) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
