@@ -1,9 +1,16 @@
 import React from "react";
 import { Box, Grid, Link, Typography } from "@material-ui/core";
 import { color_logo } from "./assets";
+import { useNavigate } from "react-router-dom";
 import "./Footer.web.css";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const logoClickHandler = () => {
+    navigate("/");
+  };
+
   return (
     <Box className="footer_mainContainer">
       <Grid container className="footer_gridContainer">
@@ -13,6 +20,7 @@ const Footer = () => {
               src={color_logo}
               alt="footer_image_logo_icon"
               className="footer_image"
+              onClick={logoClickHandler}
             />
           </Link>
         </Grid>

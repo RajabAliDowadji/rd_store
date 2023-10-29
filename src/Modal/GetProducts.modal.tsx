@@ -1,4 +1,5 @@
 import { ProductBrand } from "./GetProductBrands.modal";
+import { BucketFile, ProductCategory } from "./GetProductCategories.modal";
 import { ProductSubCategory } from "./GetProductSubCategories.modal";
 
 export interface GetProductsState {
@@ -22,10 +23,10 @@ export interface Product {
   product_MRP_price: number;
   product_price: number;
   product_description: string;
-  product_images: string[]; //TODO WORK IN FUTURE
+  product_images: BucketFile[]; //TODO WORK IN FUTURE
   product_sub_category: ProductSubCategory;
+  product_category: ProductCategory;
   product_brand: ProductBrand;
-  search_name: string;
   is_published: boolean;
   is_vegetarian: boolean;
   createdAt?: string;
@@ -44,6 +45,6 @@ export interface GetProductColumns {
 }
 
 export interface GetProductQueryPayloads {
-  brand_name: string;
-  sub_category_name: string;
+  product_category: string;
+  product_sub_category: string;
 }

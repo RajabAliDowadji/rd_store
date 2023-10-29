@@ -76,6 +76,7 @@ import resetStateSaga from "./ResetState.saga";
 import { addFilesSaga } from "./AddEditFiles.saga";
 import { addFileSaga } from "./AddEditFile.saga";
 import deleteFileSaga from "./DeleteFile.saga";
+import { addCartItem, removeSingleCartItem } from "./AddEditCartItems.saga";
 
 export default function* rootSaga() {
   yield all([
@@ -180,6 +181,11 @@ export default function* rootSaga() {
     // Admin Commission Type Saga Start
     fork(getAdminCommissionSaga),
     // Admin Commission Type Saga Start
+
+    // Add Cart Item Saga Start
+    fork(addCartItem),
+    fork(removeSingleCartItem),
+    // Add Cart Item Saga End
 
     fork(getProductRatingsSaga),
   ]);

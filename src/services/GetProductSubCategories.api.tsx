@@ -5,10 +5,13 @@ import {
   authHeader,
   publicHeader,
 } from "./Constant";
+import { ProductSubCategoriesPayload } from "../Modal/GetProductSubCategories.modal";
 
-export const getProductSubCategoriesAPI = () => {
+export const getProductSubCategoriesAPI = (
+  payload: ProductSubCategoriesPayload
+) => {
   const token = localStorage.getItem("token");
-  const URL = getProductSubCategoriesEndPoint;
+  const URL = getProductSubCategoriesEndPoint(payload.id);
   let header;
   if (token) {
     header = authHeader(token);

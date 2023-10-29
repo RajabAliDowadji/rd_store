@@ -1,0 +1,61 @@
+.customproduct_mainContainer {
+  padding: 40px;
+  margin-bottom: 50px;
+}
+
+.customproduct_productSubContainer {
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--background);
+}
+
+.customproduct_productTitleText {
+  font-family: var(--fontFamily) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: var(--black) !important;
+}
+
+.customproduct_productBrandText {
+  font-family: var(--fontFamily) !important;
+  font-size: 12px !important;
+  margin: 20px 0px !important;
+  color: var(--primary500) !important;
+  font-weight: 600 !important;
+  padding: 5px 10px !important;
+  background-color: var(--icon500);
+  width: max-content;
+  border-radius: 3px;
+}
+
+.customproduct_productPriceText {
+  font-family: var(--fontFamily) !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  color: var(--black) !important;
+}
+
+.customproduct_productMRPPriceText {
+  font-family: var(--fontFamily) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--primary500) !important;
+  margin: 10px 0px !important;
+}
+
+.customproduct_productBtnContainer {
+  margin: 50px 0px !important;
+}
+
+.customproduct_descTitleText {
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--black) !important;
+  margin: 10px 0px !important;
+}
+
+.customproduct_descText {
+  font-family: var(--fontFamily) !important;
+  font-size: 14px !important;
+  color: var(--black) !important;
+}

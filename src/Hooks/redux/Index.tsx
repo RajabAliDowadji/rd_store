@@ -49,7 +49,7 @@ import getCommissionByIdReducer from "./GetCommissionById.redux";
 import addEditCommissionReducer from "./AddEditCommission.redux";
 import deleteCommissionReducer from "./DeleteCommission.redux";
 import getAdminCommissionsReducer from "./GetAdminCommission.redux";
-
+import addEditCartItemsReducer from "./AddEditCartItems.redux";
 import getProductRatingsReducer from "./GetProductRatings.redux";
 
 const rootReducers = combineReducers({
@@ -142,6 +142,10 @@ const rootReducers = combineReducers({
   //Admin Commission Reducer Start
   get_admin_commissions: getAdminCommissionsReducer,
   //Admin Commission Reducer End
+
+  // ADD Edit Cart Items Reducer Start
+  add_edit_cart_items: addEditCartItemsReducer,
+  // ADD Edit Cart Items Reducer End
 
   get_product_ratings: getProductRatingsReducer,
 });

@@ -6,9 +6,11 @@ import {
   ProductCategory,
 } from "../../Modal/GetProductCategories.modal";
 import { GET_PRODUCT_CATEGORIES } from "../../Hooks/Saga/Constant";
+import { useNavigate } from "react-router-dom";
 import "./MainMenu.web.css";
 
 const MainMenu = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state: any) => state);
   const [productCategories, setProductCategories] = useState<
@@ -41,11 +43,23 @@ const MainMenu = () => {
     }
   }, [state]);
 
+  const categoryClickHandle = (id: string) => {
+    navigate(`/products/${id}`);
+  };
+
   return (
     <Box className="mainMenu_mainContainer">
       <Grid container className="mainMenu_gridContainer">
         {productCategories.map((productCategory: ProductCategory) => (
-          <Grid item xs={6} sm={6} md={4} lg={2}>
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            md={4}
+            lg={2}
+            key={productCategory._id}
+            onClick={categoryClickHandle.bind(this, productCategory._id)}
+          >
             <Box className="mainMenu_innerContainer">
               <img
                 src={productCategory.category_image.file_url}

@@ -5,8 +5,8 @@ import { GetProductQueryPayloads } from "../Modal/GetProducts.modal";
 export const getProductsAPI = (payload: GetProductQueryPayloads) => {
   const token = localStorage.getItem("token");
   const URL = getProductsEndPoint(
-    payload.brand_name,
-    payload.sub_category_name
+    payload.product_category,
+    payload.product_sub_category
   );
   let header;
   if (token) {

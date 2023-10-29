@@ -1,4 +1,4 @@
-import { ProductCategory } from "./GetProductCategories.modal";
+import { BucketFile, ProductCategory } from "./GetProductCategories.modal";
 
 export interface GetProductSubCategoriesState {
   isLoading: boolean;
@@ -16,7 +16,7 @@ export interface SuccessResponseState {
 export interface ProductSubCategory {
   _id: string;
   sub_category_name: string;
-  search_name: string;
+  sub_category_image: BucketFile;
   product_category: ProductCategory;
   createdAt?: string;
   updatedAt?: string;
@@ -25,6 +25,10 @@ export interface ProductSubCategory {
 export interface GetProductSubCategoriesColumns {
   _id: string;
   sub_category_name: string;
-  category_name: string;
-  search_name: string;
+  sub_category_image: BucketFile;
+  product_category: ProductCategory;
+}
+
+export interface ProductSubCategoriesPayload {
+  id: string;
 }

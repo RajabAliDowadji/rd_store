@@ -1,33 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@material-ui/core";
 import CustomAddButton from "../../Ui/Button/CustomAddButton.web";
+import { useNavigate } from "react-router-dom";
+import { Product } from "../../Modal/GetProducts.modal";
+import { ADD_CART_ITEM } from "../../Hooks/Saga/Constant";
+import { useDispatch, useSelector } from "react-redux";
+import AddMinusButton from "../../Ui/Button/AddMinusButton.web";
+import { CartItem } from "../../Modal/AddEditCartItems.modal";
 import "./CustomCard.web.css";
 
-const CustomCard = (props: any) => {
+interface CustomCardProps {
+  product: Product;
+}
+
+const CustomCard = ({ product }: CustomCardProps) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const state = useSelector((state: any) => state);
+  const [productQty, setProductQty] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (
+      state &&
+      state.add_edit_cart_items &&
+      state.add_edit_cart_items.cart_items &&
+      state.add_edit_cart_items.cart_items.length !== 0
+    ) {
+      state.add_edit_cart_items.cart_items.forEach((cartItem: CartItem) => {
+        if (product && cartItem.product._id === product._id) {
+          setProductQty(cartItem.product_qty);
+        } else {
+          setProductQty(null);
+        }
+      });
+    } else if (
+      state &&
+      state.add_edit_cart_items &&
+      state.add_edit_cart_items.cart_items &&
+      state.add_edit_cart_items.cart_items.length === 0
+    ) {
+      setProductQty(null);
+    }
+  }, [product, state]);
+
+  const cardClickHandle = (event: { stopPropagation: () => void }) => {
+    event.stopPropagation();
+    navigate(`/product/${product._id}`);
+  };
+
+  const addProductClickHandle = (event: { stopPropagation: () => void }) => {
+    event.stopPropagation();
+    dispatch({
+      type: ADD_CART_ITEM,
+      payload: { product: product },
+    });
+  };
+
   return (
-    <Box className="customCard_mainContainer">
+    <Box className="customCard_mainContainer" onClick={cardClickHandle}>
       <img
-        src={props.product.product_images[0].file_url}
+        src={product.product_images[0].file_url}
         alt="product_image"
         className="customCard_image"
       />
       <Typography className="customCard_titleText">
-        {props.product.product_title}
+        {product.product_title}
       </Typography>
       <Typography className="customCard_sizeText">
-        {props.product.product_size}
+        {product.product_size}
       </Typography>
       <Box className="customCard_actionContainer">
         <Box className="customCard_actionContainer">
           <Typography className="customCard_MRPpriceText">
-            ₹{props.product.product_MRP_price}
+            ₹{product.product_MRP_price}
           </Typography>
           <Typography className="customCard_priceText">
-            ₹{props.product.product_price}
+            ₹{product.product_price}
           </Typography>
         </Box>
         <Box>
-          <CustomAddButton title={"Add"} />
+          {productQty && productQty != null ? (
+            <AddMinusButton productQty={productQty} product={product} />
+          ) : (
+            <CustomAddButton title={"Add"} onClick={addProductClickHandle} />
+          )}
         </Box>
       </Box>
     </Box>

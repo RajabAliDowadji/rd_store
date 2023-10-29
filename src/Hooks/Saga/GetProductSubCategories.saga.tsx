@@ -7,13 +7,21 @@ import {
   getProductSubCategoriesFailure,
   internalServerFailure,
 } from "../redux/GetProductSubCategories.redux";
-import { SuccessResponseState } from "../../Modal/GetProductSubCategories.modal";
+import {
+  ProductSubCategoriesPayload,
+  SuccessResponseState,
+} from "../../Modal/GetProductSubCategories.modal";
 
-export function* getProductSubCategoriesAPISaga() {
+export function* getProductSubCategoriesAPISaga({
+  payload,
+}: {
+  type: string;
+  payload: ProductSubCategoriesPayload;
+}) {
   yield put(getProductSubCategories());
   let result: SuccessResponseState;
   try {
-    result = yield getProductSubCategoriesAPI();
+    result = yield getProductSubCategoriesAPI(payload);
     if (result.status === 200) {
       yield put(getProductSubCategoriesSuccess(result));
     } else {

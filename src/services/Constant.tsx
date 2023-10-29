@@ -103,8 +103,17 @@ export const addProductCategoryEndPoint =
 export const Get_Product_Sub_Categories_END_POINT = "sub_categories";
 export const Add_Product_Sub_Category_END_POINT = "sub_category/create";
 export const Get_Product_Sub_Category_By_Id_END_POINT = "sub_category/";
-export const getProductSubCategoriesEndPoint =
-  BASE_URL + Product_END_POINT + Get_Product_Sub_Categories_END_POINT;
+export const getProductSubCategoriesEndPoint = (id?: string) => {
+  if (id) {
+    return (
+      BASE_URL +
+      Product_END_POINT +
+      Get_Product_Sub_Categories_END_POINT +
+      `?product_category=${id}`
+    );
+  }
+  return BASE_URL + Product_END_POINT + Get_Product_Sub_Categories_END_POINT;
+};
 export const productSubCategoryByIdEndPoint = (id: string) => {
   return (
     BASE_URL + Product_END_POINT + Get_Product_Sub_Category_By_Id_END_POINT + id
@@ -143,22 +152,29 @@ export const deleteFileEndPoint = (id: string) => {
 export const Get_Product_END_POINT = "admin/product/";
 export const Add_Product_END_POINT = "create";
 export const getProductsEndPoint = (
-  brand_name: string,
-  sub_category_name: string
+  product_category: string,
+  product_sub_category: string
 ) => {
-  if (brand_name !== "" && sub_category_name !== "") {
+  if (
+    product_category &&
+    product_category !== "" &&
+    product_sub_category &&
+    product_sub_category !== ""
+  ) {
     return (
       BASE_URL +
       Get_Product_END_POINT +
-      `?brand_name=${brand_name}&sub_category_name=${sub_category_name}`
+      `?product_category=${product_category}&product_sub_category=${product_sub_category}`
     );
-  } else if (brand_name !== "") {
-    return BASE_URL + Get_Product_END_POINT + `?brand_name=${brand_name}`;
-  } else if (sub_category_name !== "") {
+  } else if (product_category && product_category !== "") {
+    return (
+      BASE_URL + Get_Product_END_POINT + `?product_category=${product_category}`
+    );
+  } else if (product_sub_category && product_sub_category !== "") {
     return (
       BASE_URL +
       Get_Product_END_POINT +
-      `?sub_category_name=${sub_category_name}`
+      `?product_sub_category=${product_sub_category}`
     );
   } else {
     return BASE_URL + Get_Product_END_POINT;
