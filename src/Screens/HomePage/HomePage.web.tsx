@@ -6,8 +6,9 @@ import CustomCarousal from "../../components/CustomCarousal/CustomCarousal.web";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductCategory } from "../../Modal/GetProductCategories.modal";
 import { GET_PRODUCTS } from "../../Hooks/Saga/Constant";
-import "./HomePage.web.css";
 import { Product } from "../../Modal/GetProducts.modal";
+import { CartItem } from "../../Modal/AddEditCartItems.modal";
+import "./HomePage.web.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const HomePage = () => {
     ) {
       let tempArr: Product[] = [];
       state.get_products.products.map((product: Product) =>
-        tempArr.push(product)
+        tempArr.push({ ...product, product_qty: 0 })
       );
       setProducts(tempArr);
     } else if (
@@ -47,6 +48,29 @@ const HomePage = () => {
       setProducts([]);
     }
   }, [state]);
+
+  useEffect(() => {
+    if (
+      state &&
+      state.add_edit_cart_items &&
+      state.add_edit_cart_items.cart_items &&
+      state.add_edit_cart_items.cart_items.length !== 0
+    ) {
+      let tempProducts = products;
+      tempProducts.forEach((product: Product, index: number) => {
+        state.add_edit_cart_items.cart_items.forEach((cartItem: CartItem) => {
+          if (product._id === cartItem.product._id) {
+            let updatedProduct = {
+              ...product,
+              product_qty: cartItem.product_qty,
+            };
+            tempProducts[index] = updatedProduct;
+          }
+        });
+      });
+      setProducts(tempProducts);
+    }
+  }, [products, state]);
 
   useEffect(() => {
     if (

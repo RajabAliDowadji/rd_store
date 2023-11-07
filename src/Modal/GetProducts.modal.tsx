@@ -29,6 +29,7 @@ export interface Product {
   product_brand: ProductBrand;
   is_published: boolean;
   is_vegetarian: boolean;
+  product_qty: number;
   createdAt?: string;
   updatedAt?: string;
 }

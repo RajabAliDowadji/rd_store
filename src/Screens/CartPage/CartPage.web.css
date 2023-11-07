@@ -1,0 +1,117 @@
+.cartPage_mainContainer {
+  padding: 40px;
+}
+
+.cartPage_innerContainer {
+  width: 90%;
+  margin: auto;
+}
+
+.cartPage_placeorderContainer {
+  padding: 20px;
+  margin: 20px 0px;
+  background-color: var(--background);
+  border-radius: 6px;
+}
+
+.cartPage_placeorderInnerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.cartPage_titleText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+}
+
+.cartCard_subTitleText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+}
+
+.cartPage_btnContainer {
+  margin-top: 30px !important;
+}
+
+.cartPage_activeBtn {
+  width: 100% !important;
+  cursor: pointer !important;
+}
+
+.cartPage_emptyCartImg {
+  width: 100%;
+  margin: auto;
+  height: 50vh;
+  object-fit: contain;
+}
+
+.cartPage_deliverTxt {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+}
+
+.cartPage_addressMainContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cartPage_nameText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  margin-left: 5px !important;
+}
+
+.cartPage_addressText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  margin-top: 5px !important;
+}
+
+.cartPage_billTitleTxt {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}
+
+.cartPage_totalPriceContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0px;
+  padding-top: 20px;
+  border-top: 1px solid var(--black);
+}
+
+.cartPage_totalPriceText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 20px !important;
+}
+
+.cartPage_totalPriceSubText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 20px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .cartPage_mainContainer {
+    padding: 20px;
+  }
+
+  .cartPage_innerContainer {
+    width: 100%;
+    margin: auto;
+  }
+}

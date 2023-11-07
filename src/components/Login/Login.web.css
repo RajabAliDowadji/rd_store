@@ -1,0 +1,14 @@
+.login_titleText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+.login_textFieldContainer {
+  margin: 20px 0px;
+}
+
+.login_BtnContainer {
+  margin-top: 30px;
+}

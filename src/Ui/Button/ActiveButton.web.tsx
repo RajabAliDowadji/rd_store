@@ -8,7 +8,7 @@ interface activeButton {
   onClick?: any;
   style?: any;
   className?: any;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 const ActiveButton = ({

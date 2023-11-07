@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import CustomAddButton from "../../Ui/Button/CustomAddButton.web";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../Modal/GetProducts.modal";
 import { ADD_CART_ITEM } from "../../Hooks/Saga/Constant";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import AddMinusButton from "../../Ui/Button/AddMinusButton.web";
-import { CartItem } from "../../Modal/AddEditCartItems.modal";
 import "./CustomCard.web.css";
 
 interface CustomCardProps {
@@ -16,32 +15,6 @@ interface CustomCardProps {
 const CustomCard = ({ product }: CustomCardProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state: any) => state);
-  const [productQty, setProductQty] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (
-      state &&
-      state.add_edit_cart_items &&
-      state.add_edit_cart_items.cart_items &&
-      state.add_edit_cart_items.cart_items.length !== 0
-    ) {
-      state.add_edit_cart_items.cart_items.forEach((cartItem: CartItem) => {
-        if (product && cartItem.product._id === product._id) {
-          setProductQty(cartItem.product_qty);
-        } else {
-          setProductQty(null);
-        }
-      });
-    } else if (
-      state &&
-      state.add_edit_cart_items &&
-      state.add_edit_cart_items.cart_items &&
-      state.add_edit_cart_items.cart_items.length === 0
-    ) {
-      setProductQty(null);
-    }
-  }, [product, state]);
 
   const cardClickHandle = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
@@ -79,8 +52,11 @@ const CustomCard = ({ product }: CustomCardProps) => {
           </Typography>
         </Box>
         <Box>
-          {productQty && productQty != null ? (
-            <AddMinusButton productQty={productQty} product={product} />
+          {product.product_qty && product.product_qty !== 0 ? (
+            <AddMinusButton
+              productQty={product.product_qty}
+              product={product}
+            />
           ) : (
             <CustomAddButton title={"Add"} onClick={addProductClickHandle} />
           )}
