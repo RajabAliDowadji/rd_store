@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import { Box, Typography } from "@material-ui/core";
 import CustomTextField from "../../Ui/CustomTextField/CustomTextField.web";
-import { isEmpty } from "../../Utils/common";
-import { emailValidate } from "../../Validations/emailValidate.web";
-import { passwordValidate } from "../../Validations/passwordValidate.web";
 import ActiveButton from "../../Ui/Button/ActiveButton.web";
-import { useDispatch } from "react-redux";
+import { passwordValidate } from "../../Validations/passwordValidate.web";
+import { emailValidate } from "../../Validations/emailValidate.web";
 import { USER_LOGIN } from "../../Hooks/Saga/Constant";
+import { isEmpty } from "../../Utils/common";
+import { useDispatch } from "react-redux";
 import "./Login.web.css";
 
-const Login = () => {
+interface LoginProps {
+  open: boolean;
+  handleClose: any;
+}
+
+const Login = ({ open, handleClose }: LoginProps) => {
   const dispatch = useDispatch();
   const initialData = {
     email: "",
@@ -37,11 +43,11 @@ const Login = () => {
     if (fieldName === "Password") {
       isValid = passwordValidate(fieldName, event.target.value);
     }
-    setFormData((prev) => ({
+    setFormData((prev: any) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
-    setDataError((prev) => ({
+    setDataError((prev: any) => ({
       ...prev,
       errors: { ...dataError.errors, [event.target.name]: isValid.status },
       errorMsg: {
@@ -56,7 +62,7 @@ const Login = () => {
     const isEmailValid = emailValidate("Email", formData.email);
     const isPasswordValid = passwordValidate("Password", formData.password);
     if (isEmailValid.status || isPasswordValid.status) {
-      setDataError((prev) => ({
+      setDataError((prev: any) => ({
         ...prev,
         errors: {
           ...dataError.errors,
@@ -78,43 +84,52 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={formSubmitHandle}>
-      <Typography className="login_titleText">Login</Typography>
-      <Box className="login_textFieldContainer">
-        <CustomTextField
-          id="emailId"
-          type="text"
-          name="email"
-          label="Email"
-          placeholder="Enter your email"
-          value={formData.email}
-          error={dataError.errors.email}
-          errorText={dataError.errorMsg.email}
-          onChange={inputChangeHandle.bind(this, "Email")}
-        />
-      </Box>
-      <Box className="login_textFieldContainer">
-        <CustomTextField
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          label="Password"
-          value={formData.password}
-          error={dataError.errors.password}
-          errorText={dataError.errorMsg.password}
-          onChange={inputChangeHandle.bind(this, "Password")}
-        />
-      </Box>
-      <Box className="login_BtnContainer">
-        <ActiveButton
-          title="Login"
-          type="submit"
-          disabled={false}
-          style={{ width: "100%" }}
-        />
-      </Box>
-    </form>
+    <SwipeableDrawer
+      anchor="right"
+      open={open}
+      onClose={handleClose}
+      onOpen={function (event: React.SyntheticEvent<{}, Event>): void {
+        throw new Error("Function not implemented.");
+      }}
+    >
+      <form onSubmit={formSubmitHandle}>
+        <Typography className="login_titleText">Login</Typography>
+        <Box className="login_textFieldContainer">
+          <CustomTextField
+            id="emailId"
+            type="text"
+            name="email"
+            label="Email"
+            placeholder="Enter your email"
+            value={formData.email}
+            error={dataError.errors.email}
+            errorText={dataError.errorMsg.email}
+            onChange={inputChangeHandle.bind(this, "Email")}
+          />
+        </Box>
+        <Box className="login_textFieldContainer">
+          <CustomTextField
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            label="Password"
+            value={formData.password}
+            error={dataError.errors.password}
+            errorText={dataError.errorMsg.password}
+            onChange={inputChangeHandle.bind(this, "Password")}
+          />
+        </Box>
+        <Box className="login_BtnContainer">
+          <ActiveButton
+            title="Login"
+            type="submit"
+            disabled={false}
+            style={{ width: "100%" }}
+          />
+        </Box>
+      </form>
+    </SwipeableDrawer>
   );
 };
 export default Login;

@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductCategory } from "../../Modal/GetProductCategories.modal";
 import { GET_PRODUCTS } from "../../Hooks/Saga/Constant";
 import { Product } from "../../Modal/GetProducts.modal";
-import { CartItem } from "../../Modal/AddEditCartItems.modal";
 import "./HomePage.web.css";
+import { CartItem } from "../../Modal/AddEditCartItems.modal";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -35,9 +35,27 @@ const HomePage = () => {
       state.get_products.products.length !== 0
     ) {
       let tempArr: Product[] = [];
-      state.get_products.products.map((product: Product) =>
-        tempArr.push({ ...product, product_qty: 0 })
-      );
+      state.get_products.products.forEach((product: Product) => {
+        if (
+          state.add_edit_cart_items &&
+          state.add_edit_cart_items.cart_items &&
+          state.add_edit_cart_items.cart_items.length !== 0
+        ) {
+          const findedProduct = state.add_edit_cart_items.cart_items.find(
+            (cartItem: CartItem) => cartItem.product._id === product._id
+          );
+          if (findedProduct) {
+            tempArr.push({
+              ...product,
+              product_qty: findedProduct.product_qty,
+            });
+          } else {
+            tempArr.push({ ...product, product_qty: 0 });
+          }
+        } else {
+          tempArr.push({ ...product, product_qty: 0 });
+        }
+      });
       setProducts(tempArr);
     } else if (
       state &&
@@ -48,29 +66,6 @@ const HomePage = () => {
       setProducts([]);
     }
   }, [state]);
-
-  useEffect(() => {
-    if (
-      state &&
-      state.add_edit_cart_items &&
-      state.add_edit_cart_items.cart_items &&
-      state.add_edit_cart_items.cart_items.length !== 0
-    ) {
-      let tempProducts = products;
-      tempProducts.forEach((product: Product, index: number) => {
-        state.add_edit_cart_items.cart_items.forEach((cartItem: CartItem) => {
-          if (product._id === cartItem.product._id) {
-            let updatedProduct = {
-              ...product,
-              product_qty: cartItem.product_qty,
-            };
-            tempProducts[index] = updatedProduct;
-          }
-        });
-      });
-      setProducts(tempProducts);
-    }
-  }, [products, state]);
 
   useEffect(() => {
     if (

@@ -16,7 +16,6 @@ const CustomProductPage = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: any) => state);
   const [product, setProduct] = useState<Product | null>(null);
-  const [productQty, setProductQty] = useState<number | null>(null);
 
   useEffect(() => {
     if (id) {
@@ -34,33 +33,28 @@ const CustomProductPage = () => {
       state.get_product_by_id.product &&
       state.get_product_by_id.product !== null
     ) {
-      setProduct(state.get_product_by_id.product);
+      if (
+        state.add_edit_cart_items &&
+        state.add_edit_cart_items.cart_items &&
+        state.add_edit_cart_items.cart_items.length !== 0
+      ) {
+        const findedProduct = state.add_edit_cart_items.cart_items.find(
+          (cartItem: CartItem) =>
+            cartItem.product._id === state.get_product_by_id.product._id
+        );
+        if (findedProduct) {
+          setProduct({
+            ...state.get_product_by_id.product,
+            product_qty: findedProduct.product_qty,
+          });
+        } else {
+          setProduct({ ...state.get_product_by_id.product, product_qty: 0 });
+        }
+      } else {
+        setProduct({ ...state.get_product_by_id.product, product_qty: 0 });
+      }
     }
   }, [state]);
-
-  useEffect(() => {
-    if (
-      state &&
-      state.add_edit_cart_items &&
-      state.add_edit_cart_items.cart_items &&
-      state.add_edit_cart_items.cart_items.length !== 0
-    ) {
-      state.add_edit_cart_items.cart_items.forEach((cartItem: CartItem) => {
-        if (product && cartItem.product._id === product._id) {
-          setProductQty(cartItem.product_qty);
-        } else {
-          setProductQty(null);
-        }
-      });
-    } else if (
-      state &&
-      state.add_edit_cart_items &&
-      state.add_edit_cart_items.cart_items &&
-      state.add_edit_cart_items.cart_items.length === 0
-    ) {
-      setProductQty(null);
-    }
-  }, [product, state]);
 
   const addProductClickHandle = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
@@ -99,8 +93,11 @@ const CustomProductPage = () => {
                 <Typography>Working soon</Typography>
               </Box>
               <Box className="customproduct_productBtnContainer">
-                {productQty && productQty != null ? (
-                  <AddMinusButton productQty={productQty} product={product} />
+                {product.product_qty && product.product_qty !== 0 ? (
+                  <AddMinusButton
+                    productQty={product.product_qty}
+                    product={product}
+                  />
                 ) : (
                   <CustomAddButton
                     title={"Add"}

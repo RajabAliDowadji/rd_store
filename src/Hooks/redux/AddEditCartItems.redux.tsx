@@ -73,6 +73,9 @@ const addEditCartItemSlice = createSlice({
           (cartItem: CartItem) =>
             cartItem.product._id !== action.payload.product._id
         );
+        state.total_price =
+          state.total_price -
+          action.payload.product.product_price * find_Product.product_qty;
       }
     },
   },

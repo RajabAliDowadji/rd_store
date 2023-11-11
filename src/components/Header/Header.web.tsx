@@ -12,12 +12,14 @@ import { color_logo, shop_icon } from "./assets";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Header.web.css";
+import Login from "../Login/Login.web";
 
 const Header = () => {
   const navigate = useNavigate();
   const state = useSelector((state: any) => state);
   const [searchText, setSearchText] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
 
   const searchTextHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
@@ -27,8 +29,12 @@ const Header = () => {
     navigate("/");
   };
 
-  const loginClickHandle = () => {
-    navigate("/login");
+  const loginOpenClickHandle = () => {
+    setIsLoginModal(true);
+  };
+
+  const loginCloseClickHandle = () => {
+    setIsLoginModal(false);
   };
 
   const cartClickHandle = () => {
@@ -43,6 +49,10 @@ const Header = () => {
 
   return (
     <Box className="header_mainContainer">
+      {/* {isLoginModal && (
+        <LoginModal open={isLoginModal} handleClose={loginCloseClickHandle} />
+      )} */}
+      <Login open={isLoginModal} handleClose={loginCloseClickHandle} />
       <Grid container className="header_gridContainer">
         <Grid item xs={6} sm={3} md={3} lg={2}>
           <img
@@ -96,7 +106,7 @@ const Header = () => {
             >
               <Typography
                 className="header_personText"
-                onClick={loginClickHandle}
+                onClick={loginOpenClickHandle}
               >
                 Login
               </Typography>

@@ -76,7 +76,11 @@ import resetStateSaga from "./ResetState.saga";
 import { addFilesSaga } from "./AddEditFiles.saga";
 import { addFileSaga } from "./AddEditFile.saga";
 import deleteFileSaga from "./DeleteFile.saga";
-import { addCartItem, removeSingleCartItem } from "./AddEditCartItems.saga";
+import {
+  addCartItem,
+  removeProductInCartItem,
+  removeSingleCartItem,
+} from "./AddEditCartItems.saga";
 
 export default function* rootSaga() {
   yield all([
@@ -185,6 +189,7 @@ export default function* rootSaga() {
     // Add Cart Item Saga Start
     fork(addCartItem),
     fork(removeSingleCartItem),
+    fork(removeProductInCartItem),
     // Add Cart Item Saga End
 
     fork(getProductRatingsSaga),

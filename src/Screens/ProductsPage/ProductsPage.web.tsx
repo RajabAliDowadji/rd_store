@@ -14,6 +14,7 @@ import {
 import { useParams } from "react-router-dom";
 import CustomCard from "../../components/CustomCard/CustomCard.web";
 import { Product } from "../../Modal/GetProducts.modal";
+import { CartItem } from "../../Modal/AddEditCartItems.modal";
 import "./ProductsPage.web.css";
 
 const ProductsPage = () => {
@@ -89,9 +90,27 @@ const ProductsPage = () => {
       state.get_products.products.length !== 0
     ) {
       let tempArr: Product[] = [];
-      state.get_products.products.map((product: Product) =>
-        tempArr.push(product)
-      );
+      state.get_products.products.forEach((product: Product) => {
+        if (
+          state.add_edit_cart_items &&
+          state.add_edit_cart_items.cart_items &&
+          state.add_edit_cart_items.cart_items.length !== 0
+        ) {
+          const findedProduct = state.add_edit_cart_items.cart_items.find(
+            (cartItem: CartItem) => cartItem.product._id === product._id
+          );
+          if (findedProduct) {
+            tempArr.push({
+              ...product,
+              product_qty: findedProduct.product_qty,
+            });
+          } else {
+            tempArr.push({ ...product, product_qty: 0 });
+          }
+        } else {
+          tempArr.push({ ...product, product_qty: 0 });
+        }
+      });
       setProducts(tempArr);
     } else if (
       state &&

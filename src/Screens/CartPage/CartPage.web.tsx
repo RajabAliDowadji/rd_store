@@ -72,7 +72,14 @@ const CartPage = () => {
               <Grid item xs={12} sm={12} md={8} lg={8}>
                 <Grid container>
                   {cartItems.map((cartItem: CartItem) => (
-                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={12}
+                      md={12}
+                      lg={12}
+                      key={cartItem.product._id}
+                    >
                       <CartCard cartItem={cartItem} />
                     </Grid>
                   ))}
@@ -80,11 +87,9 @@ const CartPage = () => {
               </Grid>
               <Grid item xs={12} sm={12} md={4} lg={4}>
                 <Grid container>
-                  <Grid item xs={12} sm={12} md={12} lg={12}>
+                  {/* <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Box className="cartPage_placeorderContainer">
                       {isLoggedIn ? (
-                        <Login />
-                      ) : (
                         <Box>
                           <Box className="cartPage_addressMainContainer">
                             <Typography className="cartPage_deliverTxt">
@@ -105,9 +110,11 @@ const CartPage = () => {
                             />
                           </Box>
                         </Box>
+                      ) : (
+                        <Login />
                       )}
                     </Box>
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Box className="cartPage_placeorderContainer">
                       <Typography className="cartPage_billTitleTxt">
@@ -145,14 +152,6 @@ const CartPage = () => {
                           ₹{totalPrice}
                         </Typography>
                       </Box>
-                      {/*<Box className="cartPage_placeorderInnerContainer">
-                        <Typography className="cartPage_titleText">
-                          Total Price
-                        </Typography>
-                        <Typography className="cartCard_subTitleText">
-                          {totalPrice}
-                        </Typography>
-                      </Box> */}
                       <Box className="cartPage_btnContainer">
                         <ActiveButton
                           title={"Place your order"}

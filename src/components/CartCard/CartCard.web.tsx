@@ -3,6 +3,8 @@ import { Box, Typography } from "@material-ui/core";
 import { CartItem } from "../../Modal/AddEditCartItems.modal";
 import AddMinusButton from "../../Ui/Button/AddMinusButton.web";
 import { delete_icon } from "./assets";
+import { REMOVE_CART_ITEM } from "../../Hooks/Saga/Constant";
+import { useDispatch } from "react-redux";
 import "./CartCard.web.css";
 
 interface CartItemProps {
@@ -10,6 +12,17 @@ interface CartItemProps {
 }
 
 const CartCard = ({ cartItem }: CartItemProps) => {
+  const dispatch = useDispatch();
+
+  const removeProductHandle = () => {
+    dispatch({
+      type: REMOVE_CART_ITEM,
+      payload: {
+        product: cartItem.product,
+      },
+    });
+  };
+
   return (
     <Box className="cartCard_mainContainer">
       <Box className="cartCard_innerContainer">
@@ -38,6 +51,7 @@ const CartCard = ({ cartItem }: CartItemProps) => {
             src={delete_icon}
             alt="rd_store_delete_icon"
             className="cartCard_deleteIcon"
+            onClick={removeProductHandle}
           />
           <AddMinusButton
             productQty={cartItem.product_qty}
