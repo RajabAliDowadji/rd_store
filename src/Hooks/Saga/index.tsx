@@ -1,5 +1,4 @@
 import { all, fork } from "redux-saga/effects";
-import userLoginSaga from "./UserLogin.saga";
 import getPlacesSaga from "./GetPlaces.saga";
 import getPlaceSaga from "./GetPlace.saga";
 import getPlaceByIdSaga from "./GetPlaceById.saga";
@@ -81,10 +80,11 @@ import {
   removeProductInCartItem,
   removeSingleCartItem,
 } from "./AddEditCartItems.saga";
+import userLoginSaga from "./UserLogin.saga";
+import { addUserSaga } from "./AddEditUser.saga";
 
 export default function* rootSaga() {
   yield all([
-    fork(userLoginSaga),
     fork(resetStateSaga),
 
     //Place Saga Start
@@ -191,6 +191,11 @@ export default function* rootSaga() {
     fork(removeSingleCartItem),
     fork(removeProductInCartItem),
     // Add Cart Item Saga End
+
+    //User saga Start
+    fork(addUserSaga),
+    fork(userLoginSaga),
+    //User saga End
 
     fork(getProductRatingsSaga),
   ]);

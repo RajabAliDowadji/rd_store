@@ -102,10 +102,14 @@ export const DELETE_COMMISSION: string = "DELETE_COMMISSION";
 export const GET_ADMIN_COMMISSIONS: string = "GET_ADMIN_COMMISSIONS";
 // Admin Commission API Type End
 
-// ADD Edit Cart Items Reducer Start
+// ADD Edit Cart Items Start
 export const ADD_CART_ITEM: string = "ADD_CART_ITEM";
 export const REMOVE_SINGLE_CART_ITEM: string = "REMOVE_SINGLE_CART_ITEM";
 export const REMOVE_CART_ITEM: string = "REMOVE_CART_ITEM";
-// ADD Edit Cart Items Reducer End
+// ADD Edit Cart Items End
+
+// User API Type Start
+export const ADD_USER: string = "ADD_USER";
+// User API Type End
 
 export const GET_PRODUCT_RATINGS: string = "GET_PRODUCT_RATINGS";

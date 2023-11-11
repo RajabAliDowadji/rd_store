@@ -1,38 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserLoginState } from "../../Modal/UserLogin.modal";
+import { AddEditUserState } from "../../Modal/AddEditUser.modal";
 
 const initialState = {
+  user: null,
   isLoading: false,
   isError: false,
+  isSuccess: false,
   message: "",
-  isLoginSuccess: false,
-  userLoginResponse: {},
-} as UserLoginState;
+} as AddEditUserState;
 
-const userSlice = createSlice({
-  name: "login_user",
+const addEditUserSlice = createSlice({
+  name: "add_edit_user",
   initialState,
   reducers: {
-    getUserLogin(state) {
+    addEditUser(state) {
       state.isLoading = true;
     },
-    userLoginSuccess(state, action) {
-      state.userLoginResponse = action.payload;
+    addEditUserSuccess(state, action) {
+      state.user = action.payload.data;
       state.message = action.payload.message;
-      state.isLoginSuccess = true;
+      state.isSuccess = true;
       state.isLoading = false;
       state.isError = false;
     },
-    userLoginFailure(state, action) {
+    addEditUserFailure(state, action) {
       state.isError = true;
       state.message = action.payload.error.message;
       state.isLoading = false;
     },
-    userLoginResetState(state) {
+    addEditUserResetState(state) {
       state.message = "";
       state.isLoading = false;
       state.isError = false;
-      state.isLoginSuccess = false;
+      state.isSuccess = false;
     },
     internalServerFailure(state) {
       state.isError = true;
@@ -42,10 +42,11 @@ const userSlice = createSlice({
 });
 
 export const {
-  getUserLogin,
-  userLoginSuccess,
-  userLoginResetState,
-  userLoginFailure,
+  addEditUser,
+  addEditUserSuccess,
+  addEditUserFailure,
+  addEditUserResetState,
   internalServerFailure,
-} = userSlice.actions;
-export default userSlice.reducer;
+} = addEditUserSlice.actions;
+
+export default addEditUserSlice.reducer;

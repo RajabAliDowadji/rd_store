@@ -9,7 +9,7 @@ export interface UserLoginState {
   isError: boolean;
   message: string;
   isLoginSuccess: boolean;
-  userLoginResponse: SuccessResponseState | ErrorResponseState;
+  userLoginResponse: SuccessResponseState | ErrorResponseState | null;
 }
 export interface SuccessResponseState {
   status: number;

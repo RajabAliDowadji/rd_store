@@ -24,7 +24,8 @@ const PhoneTextField = ({
     <>
       <Typography className="phone_label">{label}</Typography>
       <Input
-        country="IN"
+        defaultCountry="IN"
+        placeholder="Enter phone number"
         value={value}
         onChange={onChange}
         className={

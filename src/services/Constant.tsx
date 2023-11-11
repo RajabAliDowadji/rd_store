@@ -223,6 +223,13 @@ export const getAdminCommissionEndPoint =
   BASE_URL + Get_Admin_Commissions_END_POINT;
 // Admin Commission End Point End
 
+// User End Point Start
+
+export const Add_User_END_POINT = "user/create";
+export const addUserEndPoint = BASE_URL + Add_User_END_POINT;
+
+// User End Point End
+
 export const Get_Product_Rating_END_POINT = "product/ratings";
 
 export const userLoginEndPoint = BASE_URL + Login_END_POINT;

@@ -15,6 +15,10 @@
   font-family: var(--fontFamily) !important;
 }
 
+.textField_InputProps::placeholder {
+  color: var(--gray900) !important;
+}
+
 .textField_Input {
   border-radius: 4px !important;
   background: var(--white) !important;
@@ -22,6 +26,7 @@
   color: var(--black) !important;
   font-family: var(--fontFamily) !important;
 }
+
 .textField_DisabledInput {
   border-radius: 4px !important;
   background: var(--gray600) !important;
@@ -29,6 +34,7 @@
   color: var(--gray900) !important;
   font-family: var(--fontFamily) !important;
 }
+
 .textArea_Input {
   border-radius: 4px !important;
   background: var(--white) !important;
@@ -37,6 +43,7 @@
   font-family: var(--fontFamily) !important;
   padding: 0px !important;
 }
+
 .textArea_DisabledInput {
   border-radius: 4px !important;
   background: var(--gray600) !important;
@@ -45,6 +52,7 @@
   font-family: var(--fontFamily) !important;
   padding: 0px !important;
 }
+
 .errorText {
   font-size: 13px !important;
   color: var(--red) !important;
@@ -53,25 +61,33 @@
   margin-left: 10px !important;
   font-family: var(--fontFamily) !important;
 }
+
 .phoneField_InputProps {
-  padding: 15px 15px !important;
+  padding: 15px 0px !important;
   font-family: var(--fontFamily) !important;
   border-radius: 4px !important;
   color: var(--black) !important;
   border: 1px solid var(--border);
-  width: 70%;
+  width: 100%;
   outline: none !important;
-  background: var(--background) !important;
 }
+
+.phoneField_InputProps::placeholder {
+  padding: 0px 8px !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 1rem !important;
+  color: var(--gray900) !important;
+  opacity: 0.5 !important;
+}
+
 .phoneField_ErrotInputProps {
-  padding: 15px 15px !important;
+  padding: 15px 0px !important;
   font-family: var(--fontFamily) !important;
   border-radius: 4px !important;
   color: var(--black) !important;
   border: 1px solid var(--red);
-  width: 70%;
+  width: 100%;
   outline: none !important;
-  background: var(--background) !important;
 }
 
 .phone_label {

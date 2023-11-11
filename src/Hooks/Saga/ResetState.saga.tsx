@@ -37,6 +37,8 @@ import { deleteProductInventoryResetState } from "../redux/DeleteProductInventor
 import { addEditCommissionResetState } from "../redux/AddEditCommission.redux";
 import { getCommissionByIdResetState } from "../redux/GetCommissionById.redux";
 import { deleteCommissionResetState } from "../redux/DeleteCommission.redux";
+import { addEditUserResetState } from "../redux/AddEditUser.redux";
+import { userLoginResetState } from "../redux/UserLogin.redux";
 
 export function* resetStateAPISaga({
   payload,
@@ -93,6 +95,9 @@ export function* resetStateAPISaga({
     yield put(addEditCommissionResetState());
     yield put(getCommissionByIdResetState());
     yield put(deleteCommissionResetState());
+  } else if (payload.state === "user") {
+    yield put(addEditUserResetState());
+    yield put(userLoginResetState());
   }
 }
 

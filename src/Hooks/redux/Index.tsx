@@ -1,5 +1,4 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import userReducer from "./UserLogin.redux";
 import getPlacesReducer from "./GetPlaces.redux";
 import getPlaceReducer from "./GetPlace.redux";
 import getPlaceByIdReducer from "./GetPlaceById.redux";
@@ -51,10 +50,10 @@ import deleteCommissionReducer from "./DeleteCommission.redux";
 import getAdminCommissionsReducer from "./GetAdminCommission.redux";
 import addEditCartItemsReducer from "./AddEditCartItems.redux";
 import getProductRatingsReducer from "./GetProductRatings.redux";
+import addEditUserReducer from "./AddEditUser.redux";
+import userReducer from "./UserLogin.redux";
 
 const rootReducers = combineReducers({
-  login_user: userReducer,
-
   //Place Reducer Start
   get_places: getPlacesReducer,
   get_place: getPlaceReducer,
@@ -146,6 +145,11 @@ const rootReducers = combineReducers({
   // ADD Edit Cart Items Reducer Start
   add_edit_cart_items: addEditCartItemsReducer,
   // ADD Edit Cart Items Reducer End
+
+  // User Reducer Start
+  add_edit_user: addEditUserReducer,
+  login_user: userReducer,
+  // User Reducer End
 
   get_product_ratings: getProductRatingsReducer,
 });

@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { color_logo, shop_icon } from "./assets";
+import { color_logo, shop_icon, user_icon } from "./assets";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Header.web.css";
@@ -17,7 +17,9 @@ import Login from "../Login/Login.web";
 const Header = () => {
   const navigate = useNavigate();
   const state = useSelector((state: any) => state);
+  const user_data = localStorage.getItem("user_data");
   const [searchText, setSearchText] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
 
@@ -44,6 +46,36 @@ const Header = () => {
   useEffect(() => {
     if (state && state.add_edit_cart_items) {
       setTotalPrice(state.add_edit_cart_items.total_price);
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (user_data && user_data !== null) {
+      setUserName(JSON.parse(user_data).user_name);
+    }
+  }, [user_data]);
+
+  useEffect(() => {
+    if (
+      state &&
+      state.add_edit_user &&
+      state.add_edit_user &&
+      state.add_edit_user.user &&
+      state.add_edit_user.user !== null &&
+      state.add_edit_user.isSuccess
+    ) {
+      setUserName(state.add_edit_user.user.user_name);
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (
+      state &&
+      state.login_user &&
+      state.login_user.isLoginSuccess &&
+      state.login_user.userLoginResponse
+    ) {
+      setUserName(state.login_user.userLoginResponse.data.user_name);
     }
   }, [state]);
 
@@ -104,12 +136,28 @@ const Header = () => {
               lg={6}
               className="header_loginGridContainer"
             >
-              <Typography
-                className="header_personText"
-                onClick={loginOpenClickHandle}
-              >
-                Login
-              </Typography>
+              {userName !== "" ? (
+                <Box className="header_userContainer">
+                  <img
+                    src={user_icon}
+                    alt="header_user_icon"
+                    className="header_userIcon"
+                  />
+                  <Typography
+                    className="header_personText"
+                    onClick={loginOpenClickHandle}
+                  >
+                    {userName}
+                  </Typography>
+                </Box>
+              ) : (
+                <Typography
+                  className="header_personText"
+                  onClick={loginOpenClickHandle}
+                >
+                  Login
+                </Typography>
+              )}
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               {totalPrice === 0 ? (
