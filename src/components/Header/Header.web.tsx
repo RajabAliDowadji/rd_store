@@ -143,10 +143,7 @@ const Header = () => {
                     alt="header_user_icon"
                     className="header_userIcon"
                   />
-                  <Typography
-                    className="header_personText"
-                    onClick={loginOpenClickHandle}
-                  >
+                  <Typography className="header_personText">
                     {userName}
                   </Typography>
                 </Box>
