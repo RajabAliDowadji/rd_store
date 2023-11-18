@@ -39,10 +39,10 @@ const Login = ({ open, handleClose }: LoginProps) => {
   useEffect(() => {
     if (state && state.add_edit_user && state.add_edit_user) {
       if (state.add_edit_user.isSuccess && state.add_edit_user.user) {
-        localStorage.setItem("token", state.add_edit_user.user.data.token);
+        localStorage.setItem("token", state.add_edit_user.user.token);
         localStorage.setItem(
           "user_data",
-          JSON.stringify(state.add_edit_user.user.data)
+          JSON.stringify(state.add_edit_user.user)
         );
         handleClose();
       } else if (state.add_edit_user.isError) {
