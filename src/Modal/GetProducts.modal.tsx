@@ -1,4 +1,3 @@
-import { ProductBrand } from "./GetProductBrands.modal";
 import { BucketFile, ProductCategory } from "./GetProductCategories.modal";
 import { ProductSubCategory } from "./GetProductSubCategories.modal";
 
@@ -48,4 +47,15 @@ export interface GetProductColumns {
 export interface GetProductQueryPayloads {
   product_category: string;
   product_sub_category: string;
+}
+export interface ProductBrand {
+  _id: string;
+  brand_name: string;
+  sub_category_ids: SubCategoryIds;
+  search_name: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+export interface SubCategoryIds {
+  sub_category: ProductSubCategory[];
 }

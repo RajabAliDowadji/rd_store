@@ -1,5 +1,3 @@
-import { Place } from "./GetPlaces.modal";
-
 export interface GetPlaceState {
   isLoading: boolean;
   isError: boolean;
@@ -22,4 +20,19 @@ export interface GetPlaceResponse {
   district: string;
   city: string;
   state: string;
+}
+
+export interface AddPlacePayload {
+  pincode: number;
+}
+
+export interface Place {
+  _id: string;
+  town: string;
+  district: string;
+  city: string;
+  state: string;
+  pincode: number;
+  createdAt?: string;
+  updatedAt?: string;
 }

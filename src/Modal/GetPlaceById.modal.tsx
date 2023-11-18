@@ -1,4 +1,4 @@
-import { Place } from "./GetPlaces.modal";
+import { Place } from "./GetPlace.modal";
 
 export interface GetPlaceByIdState {
   isLoading: boolean;

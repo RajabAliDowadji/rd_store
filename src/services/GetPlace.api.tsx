@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { getPlaceEndPoint, POST, authHeader, publicHeader } from "./Constant";
-import { AddPlacePayload } from "../Modal/AddEditPlace.modal";
+import { AddPlacePayload } from "../Modal/GetPlace.modal";
 
 export const getPlaceAPI = (payload: AddPlacePayload) => {
   const token = localStorage.getItem("token");
