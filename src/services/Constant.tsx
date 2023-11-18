@@ -230,6 +230,31 @@ export const addUserEndPoint = BASE_URL + Add_User_END_POINT;
 
 // User End Point End
 
+// Cart End Point Start
+export const Add_Cart_Item_END_POINT = "cart/add_item";
+export const Remove_Cart_Item_END_POINT = "cart/remove_item";
+export const Remove_Item_END_POINT = "cart/item/";
+export const Get_User_Items_END_POINT = "cart/items";
+export const Add_Cart_Bulk_Items_END_POINT = "cart/bulk/add_item";
+export const addCartItemsEndPoint = BASE_URL + Add_Cart_Item_END_POINT;
+export const removeCartItemEndPoint = BASE_URL + Remove_Cart_Item_END_POINT;
+export const removeItemEndPoint = (id: string) => {
+  return BASE_URL + Remove_Item_END_POINT + id;
+};
+export const getUserItemsEndPoint = BASE_URL + Get_User_Items_END_POINT;
+export const addBulkCartItemsEndPoint =
+  BASE_URL + Add_Cart_Bulk_Items_END_POINT;
+// Cart End Point End
+
+// Order End Point Start
+export const Order_Placed_END_POINT = "order/placed";
+export const Access_Key_END_POINT = "order/getkey";
+export const User_Order_END_POINT = "user/order";
+export const orderPlacedEndPoint = BASE_URL + Order_Placed_END_POINT;
+export const getAccessKeyEndPoint = BASE_URL + Access_Key_END_POINT;
+export const getUserOrderEndPoint = BASE_URL + User_Order_END_POINT;
+// Order End Point End
+
 export const Get_Product_Rating_END_POINT = "product/ratings";
 
 export const userLoginEndPoint = BASE_URL + Login_END_POINT;

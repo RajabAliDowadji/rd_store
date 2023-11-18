@@ -141,7 +141,14 @@ const ProductsPage = () => {
       />
       <Box className="products_mainContainer">
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            md={4}
+            lg={3}
+            className="products_subCategoriesContainer"
+          >
             {productSubCategories.map(
               (productSubCategory: ProductSubCategory) => (
                 <Grid
@@ -154,7 +161,14 @@ const ProductsPage = () => {
                   key={productSubCategory._id}
                   onClick={() => subCategoryClickHandle(productSubCategory._id)}
                 >
-                  <Grid item xs={4} className="products_imgContainer">
+                  <Grid
+                    item
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    lg={4}
+                    className="products_imgContainer"
+                  >
                     <img
                       src={productSubCategory.sub_category_image.file_url}
                       alt="product_sub_category_image"
@@ -165,7 +179,7 @@ const ProductsPage = () => {
                       }`}
                     />
                   </Grid>
-                  <Grid item xs={8}>
+                  <Grid item xs={6} sm={6} md={6} lg={8}>
                     <Typography
                       className={`${
                         subCategoriesId === productSubCategory._id
@@ -180,10 +194,10 @@ const ProductsPage = () => {
               )
             )}
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={12} sm={8} md={8} lg={9}>
             <Grid container>
               {products.map((product: Product) => (
-                <Grid item xs={3} key={product._id}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
                   <CustomCard product={product} />
                 </Grid>
               ))}

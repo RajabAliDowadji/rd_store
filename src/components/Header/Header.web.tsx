@@ -10,18 +10,26 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { color_logo, shop_icon, user_icon } from "./assets";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import "./Header.web.css";
+import { useDispatch, useSelector } from "react-redux";
 import Login from "../Login/Login.web";
+import {
+  ADD_BULK_CART_ITEMS,
+  GET_USER_CART_ITEMS,
+} from "../../Hooks/Saga/Constant";
+import "./Header.web.css";
+import { AddBulkCartItem, CartItem } from "../../Modal/AddBulkCartItems.modal";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const state = useSelector((state: any) => state);
   const user_data = localStorage.getItem("user_data");
   const [searchText, setSearchText] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [isLoginModal, setIsLoginModal] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
 
   const searchTextHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
@@ -51,6 +59,7 @@ const Header = () => {
 
   useEffect(() => {
     if (user_data && user_data !== null) {
+      setIsLogin(true);
       setUserName(JSON.parse(user_data).user_name);
     }
   }, [user_data]);
@@ -64,7 +73,9 @@ const Header = () => {
       state.add_edit_user.user !== null &&
       state.add_edit_user.isSuccess
     ) {
+      setIsLogin(true);
       setUserName(state.add_edit_user.user.user_name);
+      setIsAuth(true);
     }
   }, [state]);
 
@@ -75,15 +86,52 @@ const Header = () => {
       state.login_user.isLoginSuccess &&
       state.login_user.userLoginResponse
     ) {
+      setIsLogin(true);
       setUserName(state.login_user.userLoginResponse.data.user_name);
+      setIsAuth(true);
     }
   }, [state]);
 
+  useEffect(() => {
+    if (
+      state &&
+      state.get_user_items &&
+      !state.get_user_items.isAPICalled &&
+      isLogin
+    ) {
+      dispatch({
+        type: GET_USER_CART_ITEMS,
+      });
+    }
+  }, [dispatch, state, isLogin]);
+
+  useEffect(() => {
+    if (
+      state &&
+      state.add_edit_cart_items &&
+      state.add_edit_cart_items.cart_items &&
+      state.add_edit_cart_items.cart_items.length !== 0 &&
+      isAuth
+    ) {
+      let tempPayload: AddBulkCartItem[];
+      tempPayload = state.add_edit_cart_items.cart_items.map(
+        (cart_item: CartItem) => {
+          return {
+            product: cart_item.product._id,
+            product_qty: cart_item.product_qty,
+          };
+        }
+      );
+      dispatch({
+        type: ADD_BULK_CART_ITEMS,
+        payload: { cart_items: tempPayload },
+      });
+      setIsAuth(false);
+    }
+  }, [dispatch, state, isLogin, isAuth]);
+
   return (
     <Box className="header_mainContainer">
-      {/* {isLoginModal && (
-        <LoginModal open={isLoginModal} handleClose={loginCloseClickHandle} />
-      )} */}
       <Login open={isLoginModal} handleClose={loginCloseClickHandle} />
       <Grid container className="header_gridContainer">
         <Grid item xs={6} sm={3} md={3} lg={2}>

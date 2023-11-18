@@ -16,6 +16,18 @@ const addEditCartItemSlice = createSlice({
   name: "add_edit_cart_items",
   initialState,
   reducers: {
+    getCartItems(state, action) {
+      state.cart_items = action.payload.data.cart_items;
+      state.message = action.payload.message;
+      state.isLoading = false;
+      state.isError = false;
+      let totalPrice = 0;
+      action.payload.data.cart_items.forEach((cartItem: CartItem) => {
+        totalPrice =
+          totalPrice + cartItem.product_qty * cartItem.product.product_price;
+      });
+      state.total_price = totalPrice;
+    },
     addProductInCart(state, action) {
       const itemIndex = state.cart_items.findIndex(
         (cartItem: CartItem) =>
@@ -35,6 +47,16 @@ const addEditCartItemSlice = createSlice({
           { product_qty: 1, product: action.payload.product },
         ];
       }
+    },
+    addEditCartItemsSuccess(state, action) {
+      state.message = action.payload.message;
+      state.isLoading = false;
+      state.isError = false;
+    },
+    addEditCartItemsFailure(state, action) {
+      state.isError = true;
+      state.message = action.payload.error.message;
+      state.isLoading = false;
     },
     removeSingleProductInCart(state, action) {
       const find_Product = state.cart_items.find(
@@ -78,13 +100,21 @@ const addEditCartItemSlice = createSlice({
           action.payload.product.product_price * find_Product.product_qty;
       }
     },
+    internalServerFailure(state) {
+      state.isError = true;
+      state.isLoading = false;
+    },
   },
 });
 
 export const {
+  getCartItems,
   addProductInCart,
+  addEditCartItemsSuccess,
+  addEditCartItemsFailure,
   removeProductInCart,
   removeSingleProductInCart,
+  internalServerFailure,
 } = addEditCartItemSlice.actions;
 
 export default addEditCartItemSlice.reducer;

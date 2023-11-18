@@ -9,6 +9,8 @@ export const Colors = {
   gray900: "#5A5A5A",
   fontFamily: "Open Sans",
   background: " #eaeded",
+  icon: "#80bb3b",
+  icon500: "#bddc3f",
 };
 
 export const StepperColors = {

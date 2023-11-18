@@ -52,6 +52,11 @@ import addEditCartItemsReducer from "./AddEditCartItems.redux";
 import getProductRatingsReducer from "./GetProductRatings.redux";
 import addEditUserReducer from "./AddEditUser.redux";
 import userReducer from "./UserLogin.redux";
+import getUserItemsReducer from "./GetUserCartItems.redux";
+import orderPlacedReducer from "./OrderPlaced.redux";
+import getAccessKeyReducer from "./GetAccessKey.redux";
+import getUserOrderReducer from "./GetUserOrder.redux";
+import addBulkCartItemsReducer from "./AddBulkCartItems.redux";
 
 const rootReducers = combineReducers({
   //Place Reducer Start
@@ -144,12 +149,20 @@ const rootReducers = combineReducers({
 
   // ADD Edit Cart Items Reducer Start
   add_edit_cart_items: addEditCartItemsReducer,
+  get_user_items: getUserItemsReducer,
+  add_bulk_cart_items: addBulkCartItemsReducer,
   // ADD Edit Cart Items Reducer End
 
   // User Reducer Start
   add_edit_user: addEditUserReducer,
   login_user: userReducer,
   // User Reducer End
+
+  // Order Reducer Start
+  order_placed: orderPlacedReducer,
+  get_access_key: getAccessKeyReducer,
+  get_user_order: getUserOrderReducer,
+  // Order Reducer End
 
   get_product_ratings: getProductRatingsReducer,
 });

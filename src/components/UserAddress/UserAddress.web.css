@@ -1,0 +1,13 @@
+.UserAddress_placeorderContainer {
+  padding: 20px;
+  margin: 20px 0px;
+  background-color: var(--background);
+  border-radius: 6px;
+}
+
+.UserAddress_billTitleTxt {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}

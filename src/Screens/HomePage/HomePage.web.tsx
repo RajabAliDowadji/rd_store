@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductCategory } from "../../Modal/GetProductCategories.modal";
 import { GET_PRODUCTS } from "../../Hooks/Saga/Constant";
 import { Product } from "../../Modal/GetProducts.modal";
-import "./HomePage.web.css";
 import { CartItem } from "../../Modal/AddEditCartItems.modal";
+import "./HomePage.web.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();

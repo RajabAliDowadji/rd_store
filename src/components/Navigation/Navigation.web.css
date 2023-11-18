@@ -41,3 +41,17 @@
     margin: auto;
   }
 }
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .navigation_innerContainer {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .navigation_innerContainer {
+    width: 100%;
+    margin: auto;
+  }
+}

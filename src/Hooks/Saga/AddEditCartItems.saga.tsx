@@ -5,11 +5,22 @@ import {
   REMOVE_SINGLE_CART_ITEM,
 } from "./Constant";
 import {
+  addEditCartItemsFailure,
+  addEditCartItemsSuccess,
   addProductInCart,
+  internalServerFailure,
   removeProductInCart,
   removeSingleProductInCart,
 } from "../redux/AddEditCartItems.redux";
-import { AddCartItem } from "../../Modal/AddEditCartItems.modal";
+import {
+  AddCartItem,
+  SuccessResponseState,
+} from "../../Modal/AddEditCartItems.modal";
+import {
+  addCartItemsAPI,
+  removeCartItemInAPI,
+  removeItemInAPI,
+} from "../../services/AddEditCartItems.api";
 
 export function* addCartItemSaga({
   payload,
@@ -18,6 +29,17 @@ export function* addCartItemSaga({
   payload: AddCartItem;
 }) {
   yield put(addProductInCart(payload));
+  let result: SuccessResponseState;
+  try {
+    result = yield addCartItemsAPI(payload);
+    if (result.status === 201) {
+      yield put(addEditCartItemsSuccess(result));
+    } else {
+      yield put(addEditCartItemsFailure(result));
+    }
+  } catch (e) {
+    yield put(internalServerFailure());
+  }
 }
 
 export function* addCartItem() {
@@ -31,6 +53,17 @@ export function* removeSingleItemSaga({
   payload: AddCartItem;
 }) {
   yield put(removeSingleProductInCart(payload));
+  let result: SuccessResponseState;
+  try {
+    result = yield removeCartItemInAPI(payload);
+    if (result.status === 201) {
+      yield put(addEditCartItemsSuccess(result));
+    } else {
+      yield put(addEditCartItemsFailure(result));
+    }
+  } catch (e) {
+    yield put(internalServerFailure());
+  }
 }
 
 export function* removeSingleCartItem() {
@@ -44,6 +77,17 @@ export function* removeProductInCartSaga({
   payload: AddCartItem;
 }) {
   yield put(removeProductInCart(payload));
+  let result: SuccessResponseState;
+  try {
+    result = yield removeItemInAPI(payload);
+    if (result.status === 201) {
+      yield put(addEditCartItemsSuccess(result));
+    } else {
+      yield put(addEditCartItemsFailure(result));
+    }
+  } catch (e) {
+    yield put(internalServerFailure());
+  }
 }
 
 export function* removeProductInCartItem() {

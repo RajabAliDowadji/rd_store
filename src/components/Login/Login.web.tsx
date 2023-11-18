@@ -26,7 +26,7 @@ const Login = ({ open, handleClose }: LoginProps) => {
   };
   const state = useSelector((state: any) => state);
   const [formData, setFormData] = useState(initialData);
-  const [isLoginPage, setIsLoginPage] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(true);
   const [dataError, setDataError] = useState({
     errors: { user_name: false, email: false, phone_number: false },
     errorMsg: {

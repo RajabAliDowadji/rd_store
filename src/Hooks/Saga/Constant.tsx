@@ -106,10 +106,18 @@ export const GET_ADMIN_COMMISSIONS: string = "GET_ADMIN_COMMISSIONS";
 export const ADD_CART_ITEM: string = "ADD_CART_ITEM";
 export const REMOVE_SINGLE_CART_ITEM: string = "REMOVE_SINGLE_CART_ITEM";
 export const REMOVE_CART_ITEM: string = "REMOVE_CART_ITEM";
+export const GET_USER_CART_ITEMS: string = "GET_USER_CART_ITEMS";
+export const ADD_BULK_CART_ITEMS: string = "ADD_BULK_CART_ITEMS";
 // ADD Edit Cart Items End
 
 // User API Type Start
 export const ADD_USER: string = "ADD_USER";
 // User API Type End
+
+// Order API Type Start
+export const ORDER_PLACED: string = "ORDER_PLACED";
+export const GET_ACCESS_KEY: string = "GET_ACCESS_KEY";
+export const GET_USER_ORDER: string = "GET_USER_ORDER";
+// Order API Type End
 
 export const GET_PRODUCT_RATINGS: string = "GET_PRODUCT_RATINGS";

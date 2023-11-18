@@ -82,6 +82,11 @@ import {
 } from "./AddEditCartItems.saga";
 import userLoginSaga from "./UserLogin.saga";
 import { addUserSaga } from "./AddEditUser.saga";
+import getUserCartItemsSaga from "./GetUserCartItems.saga";
+import OrderPlacedSaga from "./OrderPlaced.saga";
+import getAccessKeySaga from "./GetAccessKey.saga";
+import getUserOrderSaga from "./GetUserOrder.saga";
+import { addBulkCartItems } from "./AddBulkCartItems.saga";
 
 export default function* rootSaga() {
   yield all([
@@ -190,7 +195,15 @@ export default function* rootSaga() {
     fork(addCartItem),
     fork(removeSingleCartItem),
     fork(removeProductInCartItem),
+    fork(getUserCartItemsSaga),
+    fork(addBulkCartItems),
     // Add Cart Item Saga End
+
+    // Order Saga Start
+    fork(OrderPlacedSaga),
+    fork(getAccessKeySaga),
+    fork(getUserOrderSaga),
+    // Order Saga End
 
     //User saga Start
     fork(addUserSaga),

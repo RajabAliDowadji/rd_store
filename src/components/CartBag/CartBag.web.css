@@ -1,0 +1,97 @@
+.CartBag_placeorderContainer {
+  padding: 20px;
+  margin: 20px 0px;
+  background-color: var(--background);
+  border-radius: 6px;
+}
+
+.CartBag_placeorderInnerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.CartBag_titleText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+}
+
+.CartBag_subTitleText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+}
+
+.CartBag_btnContainer {
+  margin-top: 30px !important;
+}
+
+.CartBag_activeBtn {
+  width: 100% !important;
+  cursor: pointer !important;
+}
+
+.CartBag_emptyCartImg {
+  width: 100%;
+  margin: auto;
+  height: 50vh;
+  object-fit: contain;
+}
+
+.CartBag_deliverTxt {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+}
+
+.CartBag_addressMainContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.CartBag_nameText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  margin-left: 5px !important;
+}
+
+.CartBag_addressText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  margin-top: 5px !important;
+}
+
+.CartBag_billTitleTxt {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}
+
+.CartBag_totalPriceContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0px;
+  padding-top: 20px;
+  border-top: 1px solid var(--black);
+}
+
+.CartBag_totalPriceText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 20px !important;
+}
+
+.CartBag_totalPriceSubText {
+  color: var(--primary500) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 20px !important;
+}

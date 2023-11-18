@@ -21,5 +21,6 @@ export interface CartItem {
 }
 
 export interface AddCartItem {
+  product_qty: number;
   product: Product;
 }
