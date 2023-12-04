@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import CustomCard from "../../components/CustomCard/CustomCard.web";
 import { Product } from "../../Modal/GetProducts.modal";
 import { CartItem } from "../../Modal/AddEditCartItems.modal";
+import NoProduct from "../../components/NoProduct/NoProduct.web";
 import "./ProductsPage.web.css";
 
 const ProductsPage = () => {
@@ -141,68 +142,85 @@ const ProductsPage = () => {
       />
       <Box className="products_mainContainer">
         <Grid container spacing={2}>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={4}
-            lg={3}
-            className="products_subCategoriesContainer"
-          >
-            {productSubCategories.map(
-              (productSubCategory: ProductSubCategory) => (
-                <Grid
-                  container
-                  className={`${
-                    subCategoriesId === productSubCategory._id
-                      ? "product_activeInnerContainer"
-                      : "product_innerContainer"
-                  }`}
-                  key={productSubCategory._id}
-                  onClick={() => subCategoryClickHandle(productSubCategory._id)}
-                >
+          {productSubCategories.length !== 0 ? (
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              md={4}
+              lg={3}
+              className="products_subCategoriesContainer"
+            >
+              {productSubCategories.map(
+                (productSubCategory: ProductSubCategory) => (
                   <Grid
-                    item
-                    xs={6}
-                    sm={6}
-                    md={6}
-                    lg={4}
-                    className="products_imgContainer"
+                    container
+                    className={`${
+                      subCategoriesId === productSubCategory._id
+                        ? "product_activeInnerContainer"
+                        : "product_innerContainer"
+                    }`}
+                    key={productSubCategory._id}
+                    onClick={() =>
+                      subCategoryClickHandle(productSubCategory._id)
+                    }
                   >
-                    <img
-                      src={productSubCategory.sub_category_image.file_url}
-                      alt="product_sub_category_image"
-                      className={`${
-                        subCategoriesId === productSubCategory._id
-                          ? "products_activeSubCatImage"
-                          : "products_subCatImage"
-                      }`}
-                    />
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6} lg={8}>
-                    <Typography
-                      className={`${
-                        subCategoriesId === productSubCategory._id
-                          ? "products_activeSubCatName"
-                          : "products_subCatName"
-                      }`}
+                    <Grid
+                      item
+                      xs={6}
+                      sm={6}
+                      md={6}
+                      lg={4}
+                      className="products_imgContainer"
                     >
-                      {productSubCategory.sub_category_name}
-                    </Typography>
+                      <img
+                        src={productSubCategory.sub_category_image.file_url}
+                        alt="product_sub_category_image"
+                        className={`${
+                          subCategoriesId === productSubCategory._id
+                            ? "products_activeSubCatImage"
+                            : "products_subCatImage"
+                        }`}
+                      />
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={8}>
+                      <Typography
+                        className={`${
+                          subCategoriesId === productSubCategory._id
+                            ? "products_activeSubCatName"
+                            : "products_subCatName"
+                        }`}
+                      >
+                        {productSubCategory.sub_category_name}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                </Grid>
-              )
-            )}
-          </Grid>
-          <Grid item xs={12} sm={8} md={8} lg={9}>
-            <Grid container>
-              {products.map((product: Product) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
-                  <CustomCard product={product} />
-                </Grid>
-              ))}
+                )
+              )}
             </Grid>
-          </Grid>
+          ) : (
+            <Grid item xs={12}>
+              <NoProduct titleMsg="Comming Soon..." />
+            </Grid>
+          )}
+
+          {productSubCategories.length !== 0 && (
+            <Grid item xs={12} sm={8} md={8} lg={9}>
+              <Grid container>
+                {products.length !== 0 ? (
+                  products.map((product: Product) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
+                      <CustomCard product={product} />
+                    </Grid>
+                  ))
+                ) : (
+                  <Grid item xs={12}>
+                    <NoProduct titleMsg="Nothing Here Yet..." />
+                  </Grid>
+                )}
+              </Grid>
+            </Grid>
+          )}
         </Grid>
       </Box>
     </MainPage>

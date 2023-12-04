@@ -1,0 +1,22 @@
+.noproduct_mainContainer {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.noproduct_img {
+  object-fit: cover;
+  height: auto;
+}
+
+.noproduct_titleText {
+  font-size: 28px !important;
+  font-family: var(--fontFamily) !important;
+  color: var(--gray) !important;
+  font-weight: 600 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .noproduct_img {
+    width: 100%;
+  }
+}

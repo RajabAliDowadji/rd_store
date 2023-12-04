@@ -40,3 +40,7 @@ export const ORDER_PLACED: string = "ORDER_PLACED";
 export const GET_ACCESS_KEY: string = "GET_ACCESS_KEY";
 export const GET_USER_ORDER: string = "GET_USER_ORDER";
 // Order API Type End
+
+// Product Rating Start
+export const ADD_PRODUCT_RATING: string = "ADD_PRODUCT_RATING";
+// Product Rating End

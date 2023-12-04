@@ -15,17 +15,23 @@ const HomePage = () => {
   const state = useSelector((state: any) => state);
   const [products, setProducts] = useState<Product[]>([]);
   const [vegitables, setVegitables] = useState<ProductCategory | null>(null);
+  const [riceAataDaal, setRiceAataDaal] = useState<ProductCategory | null>(
+    null
+  );
+  const [vegitableProducts, setVegitableProducts] = useState<Product[]>([]);
+  const [riceAataDaalProducts, setRiceAataDaalProducts] = useState<Product[]>(
+    []
+  );
 
   useEffect(() => {
-    if (vegitables) {
-      dispatch({
-        type: GET_PRODUCTS,
-        payload: {
-          product_category: vegitables._id,
-        },
-      });
-    }
-  }, [dispatch, vegitables]);
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: {
+        product_category: "",
+        product_sub_category: "",
+      },
+    });
+  }, [dispatch]);
 
   useEffect(() => {
     if (
@@ -68,6 +74,19 @@ const HomePage = () => {
   }, [state]);
 
   useEffect(() => {
+    setVegitableProducts(
+      products.filter(
+        (product: Product) => product.product_category._id === vegitables?._id
+      )
+    );
+    setRiceAataDaalProducts(
+      products.filter(
+        (product: Product) => product.product_category._id === riceAataDaal?._id
+      )
+    );
+  }, [products, riceAataDaal?._id, vegitables?._id]);
+
+  useEffect(() => {
     if (
       state &&
       state.get_product_categories &&
@@ -79,6 +98,9 @@ const HomePage = () => {
           if (productCategory.category_name === "Vegetables & Fruits") {
             setVegitables(productCategory);
           }
+          if (productCategory.category_name === "Rice, Aata & Daal") {
+            setRiceAataDaal(productCategory);
+          }
         }
       );
     }
@@ -89,7 +111,13 @@ const HomePage = () => {
       <Box className="homepage_mainContainer">
         <MainMenu />
         <Box className="homepage_carousalContainer">
-          <CustomCarousal products={products} category={vegitables} />
+          <CustomCarousal products={vegitableProducts} category={vegitables} />
+        </Box>
+        <Box className="homepage_carousalContainer">
+          <CustomCarousal
+            products={riceAataDaalProducts}
+            category={riceAataDaal}
+          />
         </Box>
       </Box>
     </MainPage>

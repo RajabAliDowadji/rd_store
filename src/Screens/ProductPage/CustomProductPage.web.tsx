@@ -3,12 +3,18 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import MainPage from "../MainPage/MainPage.web";
 import ProductCarousal from "../../components/ProductCarousal/ProductCarousal.web";
 import CustomAddButton from "../../Ui/Button/CustomAddButton.web";
-import { ADD_CART_ITEM, GET_PRODUCT_BY_ID } from "../../Hooks/Saga/Constant";
+import {
+  ADD_CART_ITEM,
+  ADD_PRODUCT_RATING,
+  GET_PRODUCT_BY_ID,
+  RESET_STATE,
+} from "../../Hooks/Saga/Constant";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Product } from "../../Modal/GetProducts.modal";
 import { CartItem } from "../../Modal/AddEditCartItems.modal";
 import AddMinusButton from "../../Ui/Button/AddMinusButton.web";
+import Rating from "@material-ui/lab/Rating";
 import "./CustomProductPage.web.css";
 
 const CustomProductPage = () => {
@@ -16,6 +22,7 @@ const CustomProductPage = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: any) => state);
   const [product, setProduct] = useState<Product | null>(null);
+  const [value, setValue] = React.useState<number | null>(2);
 
   useEffect(() => {
     if (id) {
@@ -47,14 +54,35 @@ const CustomProductPage = () => {
             ...state.get_product_by_id.product,
             product_qty: findedProduct.product_qty,
           });
+          setValue(findedProduct.product.product_rating.rating);
         } else {
           setProduct({ ...state.get_product_by_id.product, product_qty: 0 });
+          setValue(state.get_product_by_id.product.product_rating.rating);
         }
       } else {
         setProduct({ ...state.get_product_by_id.product, product_qty: 0 });
+        setValue(state.get_product_by_id.product.product_rating.rating);
       }
     }
   }, [state]);
+
+  useEffect(() => {
+    if (
+      state &&
+      state.add_product_rating &&
+      state.add_product_rating.isSuccess
+    ) {
+      dispatch({
+        type: GET_PRODUCT_BY_ID,
+        payload: { id: id },
+      });
+      dispatch({
+        type: RESET_STATE,
+        payload: { state: "rating" },
+      });
+    }
+  }, [dispatch, id, state]);
+  console.log(state);
 
   const addProductClickHandle = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
@@ -64,15 +92,23 @@ const CustomProductPage = () => {
     });
   };
 
+  const ratingChangeHandle = (event: any, newValue: number | null) => {
+    setValue(newValue);
+    dispatch({
+      type: ADD_PRODUCT_RATING,
+      payload: { product: product && product._id, rating: newValue },
+    });
+  };
+
   return (
     <MainPage>
       <Box className="customproduct_mainContainer">
         {product && product !== null && (
           <Grid container spacing={4}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
               <ProductCarousal product_images={product.product_images} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
               <Box className="customproduct_productSubContainer">
                 <Typography className="customproduct_productTitleText">
                   {product.product_title}
@@ -89,8 +125,12 @@ const CustomProductPage = () => {
                   M.R.P ₹{product.product_MRP_price}
                 </Typography>
               </Box>
-              <Box className="customproduct_productSubContainer">
-                <Typography>Working soon</Typography>
+              <Box className="customproduct_reviewContainer">
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={ratingChangeHandle}
+                />
               </Box>
               <Box className="customproduct_productBtnContainer">
                 {product.product_qty && product.product_qty !== 0 ? (

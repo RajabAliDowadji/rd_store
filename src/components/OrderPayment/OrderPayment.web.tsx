@@ -84,8 +84,6 @@ const OrderPayment = ({ activeStep, activeStepChangeHandle }: CartBagProps) => {
       paymentObject.open();
     }
   };
-
-  console.log(window);
   return (
     <Box>
       <Box>sd2121</Box>

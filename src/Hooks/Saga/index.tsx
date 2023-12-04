@@ -20,6 +20,7 @@ import getUserCartItemsSaga from "./GetUserCartItems.saga";
 import OrderPlacedSaga from "./OrderPlaced.saga";
 import getUserOrderSaga from "./GetUserOrder.saga";
 import { addBulkCartItems } from "./AddBulkCartItems.saga";
+import { addProductRating } from "./AddEditProductRating.saga";
 
 export default function* rootSaga() {
   yield all([
@@ -62,5 +63,9 @@ export default function* rootSaga() {
     fork(addUserSaga),
     fork(userLoginSaga),
     //User saga End
+
+    //Product Rating saga Start
+    fork(addProductRating),
+    //roduct Rating saga Start
   ]);
 }

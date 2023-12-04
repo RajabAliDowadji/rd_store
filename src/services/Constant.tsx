@@ -31,7 +31,7 @@ export const placeByIdEndPoint = (id: string) => {
 // Place End Point End
 
 // Product Category End Point Start
-export const Product_END_POINT = "rd_admin/product/";
+export const Product_END_POINT = "product/";
 export const Get_Product_Categories_END_POINT = "categories";
 export const Get_Product_Category_By_Id_END_POINT = "category/";
 export const getProductCategoriesEndPoint =
@@ -81,7 +81,7 @@ export const addProductBrandEndPoint =
 // Product Brand End Point End
 
 // Product End Point Start
-export const Get_Product_END_POINT = "admin/product/";
+export const Get_Product_END_POINT = "product/";
 export const Add_Product_END_POINT = "create";
 export const getProductsEndPoint = (
   product_category: string,
@@ -119,12 +119,6 @@ export const addProductEndPoint =
   BASE_URL + Get_Product_END_POINT + Add_Product_END_POINT;
 // Product End Point End
 
-// Admin Commission End Point Start
-export const Get_Admin_Commissions_END_POINT = "rd_admin/admin_commissions";
-export const getAdminCommissionEndPoint =
-  BASE_URL + Get_Admin_Commissions_END_POINT;
-// Admin Commission End Point End
-
 // User End Point Start
 
 export const Add_User_END_POINT = "user/create";
@@ -156,3 +150,8 @@ export const getUserOrderEndPoint = BASE_URL + User_Order_END_POINT;
 // Order End Point End
 
 export const userLoginEndPoint = BASE_URL + Login_END_POINT;
+
+// Product Rating End Point Start
+export const Add_Product_Rating_END_POINT = "product/rating";
+export const addProductRatingEndPoint = BASE_URL + Add_Product_Rating_END_POINT;
+// Product Rating End Point End

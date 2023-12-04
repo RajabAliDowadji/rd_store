@@ -14,6 +14,7 @@ import getUserItemsReducer from "./GetUserCartItems.redux";
 import orderPlacedReducer from "./OrderPlaced.redux";
 import getUserOrderReducer from "./GetUserOrder.redux";
 import addBulkCartItemsReducer from "./AddBulkCartItems.redux";
+import addProductRatingReducer from "./AddEditProductRating.redux";
 
 const rootReducers = combineReducers({
   //Place Reducer Start
@@ -34,7 +35,7 @@ const rootReducers = combineReducers({
   //Product Reducer Start
   get_products: getProductsReducer,
   get_product_by_id: getProductByIdReducer,
-  //Product Reducer Start
+  //Product Reducer End
 
   // ADD Edit Cart Items Reducer Start
   add_edit_cart_items: addEditCartItemsReducer,
@@ -51,6 +52,10 @@ const rootReducers = combineReducers({
   order_placed: orderPlacedReducer,
   get_user_order: getUserOrderReducer,
   // Order Reducer End
+
+  //Product Rating Start
+  add_product_rating: addProductRatingReducer,
+  //Product Rating End
 });
 
 export default rootReducers;
