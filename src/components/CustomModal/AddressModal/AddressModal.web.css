@@ -3,10 +3,11 @@
   justify-content: center;
   align-items: center;
 }
+
 .addressModal_modalSubContainer {
   position: absolute;
   width: 30%;
-  height: 70%;
+  max-height: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -21,8 +22,45 @@
   font-weight: 600 !important;
   text-align: start !important;
   font-family: var(--fontFamily) !important;
+  margin-bottom: 20px !important;
+  color: var(--primary500) !important;
 }
 
-.addressModal_mapContainer {
-  margin: 30px 0px !important;
+.addressModal_textFieldContainer {
+  margin-bottom: 20px !important;
+}
+
+.addressModal_buttonSubContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.addressModal_BtnContainer {
+  margin-top: 30px !important;
+}
+
+.addressModal_labelText {
+  font-size: 16px !important;
+  text-align: start !important;
+  font-family: var(--fontFamily) !important;
+  color: var(--black) !important;
+}
+
+.addressModal_radioBtnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .shoppage_BtnContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px !important;
+    width: 100%;
+  }
 }

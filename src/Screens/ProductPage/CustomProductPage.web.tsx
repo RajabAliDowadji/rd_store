@@ -82,7 +82,6 @@ const CustomProductPage = () => {
       });
     }
   }, [dispatch, id, state]);
-  console.log(state);
 
   const addProductClickHandle = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();

@@ -69,13 +69,13 @@ const CartPage = () => {
             />
           )}
           {activeStep === 1 && (
-            <OrderPayment
+            <UserAddress
               activeStep={activeStep}
               activeStepChangeHandle={activeStepChangeHandle}
             />
           )}
           {activeStep === 2 && (
-            <UserAddress
+            <OrderPayment
               activeStep={activeStep}
               activeStepChangeHandle={activeStepChangeHandle}
             />

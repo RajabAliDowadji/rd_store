@@ -22,9 +22,11 @@ export const fileHeader = (token: string) => {
 export const Login_END_POINT = "user/login";
 
 // Place End Point Start
+export const Get_Places_END_POINT = "places";
 export const Get_Place_END_POINT = "rd_admin/place";
 export const Place_By_Id_END_POINT = "rd_admin/place/";
 export const getPlaceEndPoint = BASE_URL + Get_Place_END_POINT;
+export const getPlacesEndPoint = BASE_URL + Get_Places_END_POINT;
 export const placeByIdEndPoint = (id: string) => {
   return BASE_URL + Place_By_Id_END_POINT + id;
 };
@@ -144,9 +146,16 @@ export const addBulkCartItemsEndPoint =
 
 // Order End Point Start
 export const Order_Placed_END_POINT = "order/placed";
+export const Add_User_Address_END_POINT = "address/create";
+export const Get_User_Address_END_POINT = "address";
 export const User_Order_END_POINT = "user/order";
 export const orderPlacedEndPoint = BASE_URL + Order_Placed_END_POINT;
 export const getUserOrderEndPoint = BASE_URL + User_Order_END_POINT;
+export const addUserAddressAPIEndPoint = BASE_URL + Add_User_Address_END_POINT;
+export const getUserAddressesEndPoint = BASE_URL + Get_User_Address_END_POINT;
+export const deleteUserAddressEndPoint = (id: string) => {
+  return BASE_URL + Get_User_Address_END_POINT + `/${id}`;
+};
 // Order End Point End
 
 export const userLoginEndPoint = BASE_URL + Login_END_POINT;

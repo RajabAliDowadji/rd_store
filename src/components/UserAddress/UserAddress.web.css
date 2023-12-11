@@ -1,13 +1,38 @@
-.UserAddress_placeorderContainer {
+.useraddress_placeorderContainer {
   padding: 20px;
   margin: 20px 0px;
   background-color: var(--background);
   border-radius: 6px;
 }
 
-.UserAddress_billTitleTxt {
+.useraddress_billTitleTxt {
   color: var(--black) !important;
   font-family: var(--fontFamily) !important;
   font-size: 22px !important;
   font-weight: 600 !important;
+  margin-bottom: 20px !important;
+}
+.useraddress_titleText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  margin: 10px 0px !important;
+}
+
+.useraddress_subtitleText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  margin: 10px 0px !important;
+  border-bottom: 1px solid var(--primary500) !important;
+}
+
+.useraddress_subtitleNullText {
+  padding: 10px 0px;
+}
+
+.useraddress_errorTitleTxt {
+  font-size: 14px !important;
+  font-family: var(--fontFamily) !important;
+  color: var(--red) !important;
 }

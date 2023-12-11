@@ -1,0 +1,78 @@
+.addressCard_mainContainer {
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--primary500);
+}
+
+.addressCard_innerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addressCard_bigContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.addressCard_BtnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--background);
+  margin: 0px 10px;
+}
+
+.addressCard_productImage {
+  width: 100px;
+  object-fit: contain;
+  height: 7vh;
+  padding: 5px;
+  border-radius: 6px;
+  mix-blend-mode: darken;
+}
+
+.addressCard_titleContainer {
+  text-align: start;
+}
+
+.addressCard_titleText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+.addressCard_placeText {
+  color: var(--black) !important;
+  font-family: var(--fontFamily) !important;
+  font-size: 14px !important;
+  margin-bottom: 5px !important;
+}
+
+.addressCard_btnActionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  vertical-align: middle;
+}
+
+.addressCard_deleteIcon {
+  width: max-content;
+  object-fit: contain;
+  height: 25px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .addressCard_productImage {
+    height: 11vh;
+  }
+}

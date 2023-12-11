@@ -7,6 +7,8 @@ import { getProductByIdResetState } from "../redux/GetProductById.redux";
 import { addEditUserResetState } from "../redux/AddEditUser.redux";
 import { userLoginResetState } from "../redux/UserLogin.redux";
 import { addEditProductRatingResetState } from "../redux/AddEditProductRating.redux";
+import { addUserAddressResetState } from "../redux/AddUserAddress.redux";
+import { deleteUserAddressResetState } from "../redux/DeleteUserAddress.redux";
 
 export function* resetStateAPISaga({
   payload,
@@ -27,6 +29,9 @@ export function* resetStateAPISaga({
     yield put(userLoginResetState());
   } else if (payload.state === "rating") {
     yield put(addEditProductRatingResetState());
+  } else if (payload.state === "user_address") {
+    yield put(addUserAddressResetState());
+    yield put(deleteUserAddressResetState());
   }
 }
 

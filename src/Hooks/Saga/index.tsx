@@ -1,4 +1,5 @@
 import { all, fork } from "redux-saga/effects";
+import getPlacesSaga from "./GetPlaces.saga";
 import getPlaceSaga from "./GetPlace.saga";
 import getPlaceByIdSaga from "./GetPlaceById.saga";
 import getProductCategoriesSaga from "./GetProductCategories.saga";
@@ -7,7 +8,6 @@ import getProductSubCategoriesSaga from "./GetProductSubCategories.saga";
 import getProductSubCategoryByIdSaga from "./GetProductSubCategoryById.saga";
 import getProductsSaga from "./GetProducts.saga";
 import getProductByIdSaga from "./GetProductById.saga";
-
 import resetStateSaga from "./ResetState.saga";
 import {
   addCartItem,
@@ -21,12 +21,16 @@ import OrderPlacedSaga from "./OrderPlaced.saga";
 import getUserOrderSaga from "./GetUserOrder.saga";
 import { addBulkCartItems } from "./AddBulkCartItems.saga";
 import { addProductRating } from "./AddEditProductRating.saga";
+import addUserAddressSaga from "./AddUserAddress.saga";
+import getUserAddressesSaga from "./GetUserAddresses.saga";
+import deleteUserAddressSaga from "./DeleteUserAddress.saga";
 
 export default function* rootSaga() {
   yield all([
     fork(resetStateSaga),
 
     //Place Saga Start
+    fork(getPlacesSaga),
     fork(getPlaceSaga),
     fork(getPlaceByIdSaga),
     //Place Saga End
@@ -57,6 +61,9 @@ export default function* rootSaga() {
     // Order Saga Start
     fork(OrderPlacedSaga),
     fork(getUserOrderSaga),
+    fork(addUserAddressSaga),
+    fork(getUserAddressesSaga),
+    fork(deleteUserAddressSaga),
     // Order Saga End
 
     //User saga Start

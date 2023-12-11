@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
+import getPlacesReducer from "./GetPlaces.redux";
 import getPlaceReducer from "./GetPlace.redux";
 import getPlaceByIdReducer from "./GetPlaceById.redux";
 import getProductCategoriesReducer from "./GetProductCategories.redux";
@@ -9,15 +10,19 @@ import getProductsReducer from "./GetProducts.redux";
 import getProductByIdReducer from "./GetProductById.redux";
 import addEditCartItemsReducer from "./AddEditCartItems.redux";
 import addEditUserReducer from "./AddEditUser.redux";
+import addUserAddressReducer from "./AddUserAddress.redux";
 import userReducer from "./UserLogin.redux";
 import getUserItemsReducer from "./GetUserCartItems.redux";
 import orderPlacedReducer from "./OrderPlaced.redux";
 import getUserOrderReducer from "./GetUserOrder.redux";
 import addBulkCartItemsReducer from "./AddBulkCartItems.redux";
 import addProductRatingReducer from "./AddEditProductRating.redux";
+import getUserAddressesReducer from "./GetUserAddresses.redux";
+import deleteUserAddressReduer from "./DeleteUserAddress.redux";
 
 const rootReducers = combineReducers({
   //Place Reducer Start
+  get_places: getPlacesReducer,
   get_place: getPlaceReducer,
   get_place_by_id: getPlaceByIdReducer,
   //Place Reducer End
@@ -46,6 +51,9 @@ const rootReducers = combineReducers({
   // User Reducer Start
   add_edit_user: addEditUserReducer,
   login_user: userReducer,
+  add_user_address: addUserAddressReducer,
+  get_user_addresses: getUserAddressesReducer,
+  delete_user_address: deleteUserAddressReduer,
   // User Reducer End
 
   // Order Reducer Start

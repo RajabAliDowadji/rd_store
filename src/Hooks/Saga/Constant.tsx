@@ -39,6 +39,9 @@ export const ADD_USER: string = "ADD_USER";
 export const ORDER_PLACED: string = "ORDER_PLACED";
 export const GET_ACCESS_KEY: string = "GET_ACCESS_KEY";
 export const GET_USER_ORDER: string = "GET_USER_ORDER";
+export const ADD_USER_ADDRESS: string = "ADD_USER_ADDRESS";
+export const GET_USER_ADDRESSES: string = "GET_USER_ADDRESSES";
+export const DELETE_USER_ADDRESS: string = "DELETE_USER_ADDRESS";
 // Order API Type End
 
 // Product Rating Start
