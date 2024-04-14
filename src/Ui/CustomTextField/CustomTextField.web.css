@@ -63,17 +63,16 @@
 }
 
 .phoneField_InputProps {
-  padding: 15px 0px !important;
+  padding: 15px 8px !important;
   font-family: var(--fontFamily) !important;
   border-radius: 4px !important;
   color: var(--black) !important;
   border: 1px solid var(--border);
-  width: 100%;
+  width: calc(100% - 16px);
   outline: none !important;
 }
 
 .phoneField_InputProps::placeholder {
-  padding: 0px 8px !important;
   font-family: var(--fontFamily) !important;
   font-size: 1rem !important;
   color: var(--gray900) !important;
@@ -81,13 +80,20 @@
 }
 
 .phoneField_ErrotInputProps {
-  padding: 15px 0px !important;
+  padding: 15px 8px !important;
   font-family: var(--fontFamily) !important;
   border-radius: 4px !important;
   color: var(--black) !important;
   border: 1px solid var(--red);
-  width: 100%;
+  width: calc(100% - 16px);
   outline: none !important;
+}
+
+.phoneField_ErrotInputProps::placeholder {
+  font-family: var(--fontFamily) !important;
+  font-size: 1rem !important;
+  color: var(--gray900) !important;
+  opacity: 0.5 !important;
 }
 
 .phone_label {

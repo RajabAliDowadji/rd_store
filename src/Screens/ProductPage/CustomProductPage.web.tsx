@@ -54,7 +54,7 @@ const CustomProductPage = () => {
             ...state.get_product_by_id.product,
             product_qty: findedProduct.product_qty,
           });
-          setValue(findedProduct.product.product_rating.rating);
+          setValue(state.get_product_by_id.product.product_rating.rating);
         } else {
           setProduct({ ...state.get_product_by_id.product, product_qty: 0 });
           setValue(state.get_product_by_id.product.product_rating.rating);

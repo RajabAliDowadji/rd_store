@@ -64,10 +64,10 @@ function ColorlibStepIcon(props: StepIconProps) {
 
   const icons: { [index: string]: React.ReactElement } = {
     1: <img src={cart_icon} alt="cart_icon" className="CartStepper_icon" />,
-    2: <img src={place_icon} alt="place_icon" className="CartStepper_icon" />,
-    3: (
+    2: (
       <img src={payment_icon} alt="payment_icon" className="CartStepper_icon" />
     ),
+    3: <img src={place_icon} alt="place_icon" className="CartStepper_icon" />,
   };
 
   return (
@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ["Cart", "Address", "Payment"];
+  return ["Cart", "Payment", "Address"];
 }
 
 interface CartStepperProps {
